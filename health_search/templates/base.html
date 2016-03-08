@@ -36,7 +36,8 @@
           <ul class="nav navbar-nav navbar-right">
 				{% if user.is_authenticated %}
                     <li><a href="{% url 'restricted' %}">Restricted Page</a></li>
-                    <li><a href="{url 'user'}">Welcome {{ user.username }}!</a></li>
+                    <li><a href="{url 'user'}">Welcome {{ user.username }}</a></li>
+                    <li>|</li>
 					<li><a href="{% url 'logout' %}">Logout</a></li>
 				{% else %}
 					<li><a href="{% url 'register' %}">Register Here</a></li>
