@@ -7,7 +7,7 @@ BING_API_KEY = Bing_Key
 if __name__ == '__main__':
     main()
 
-def run_query(search_terms):
+def bing_run_query(search_terms):
     # Specify the base
     root_url = 'https://api.datamarket.azure.com/Bing/Search/'
     source = 'Web'
