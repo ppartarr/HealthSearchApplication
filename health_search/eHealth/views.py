@@ -13,3 +13,6 @@ def index(request):
 
 def about(request):
     return render(request, 'eHealth/about.html')
+
+def search(request):
+    return render(request, 'eHealth/search.html')

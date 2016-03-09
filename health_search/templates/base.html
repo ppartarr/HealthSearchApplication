@@ -38,7 +38,7 @@
             <a class="navbar-brand" href="{% url 'index' %}">eHealth</a>
         </div>
         <div class="navbar-collapse collapse">
-            <form class="navbar-form navbar-left">
+            <form class="navbar-form navbar-left" action="{% url 'search' %}">
                 <input type="text" class="form-control" placeholder="Search...">
                 <input class="btn btn-primary" type="submit" name="submit" value="Search"/>
 
