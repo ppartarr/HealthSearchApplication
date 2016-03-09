@@ -27,7 +27,6 @@ def search(request):
         query = request.POST['query'].strip()
 
         if query:
-            # Run our Bing function to get the results list!
             result_list = federated_run_querys(query)
 
-    return render(request, 'rango/search.html', {'result_list': result_list})
+    return render(request, 'eHealth/search.html', {'result_list': result_list})
