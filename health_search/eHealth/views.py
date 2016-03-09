@@ -20,6 +20,5 @@ def search(request):
 
         if query:
             result_list = federated_run_querys(query)
-            print result_list
 
     return render(request, 'eHealth/search.html', {'result_list': result_list})

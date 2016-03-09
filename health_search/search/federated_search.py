@@ -8,9 +8,7 @@ if __name__ == '__main__':
 
 # todo check
 def federated_run_querys(search_terms):
-    #todo
-    Bing_results =[]# bing_run_query(search_terms)
-    print 'trying healthfinder'
+    Bing_results =''#bing_run_query(search_terms) todo remove #
     HealthFinder_results = healthfinder_run_query(search_terms)
     MedlinePlus_results = medlineplus_run_query(search_terms)
 

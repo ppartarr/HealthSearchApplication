@@ -43,7 +43,7 @@ def bing_run_query(search_terms):
 
     # Create our results list which we'll populate.
     results = []
-
+    print search_url
     try:
         # Prepare for connecting to Bing's servers.
         handler = urllib2.HTTPBasicAuthHandler(password_mgr)
@@ -61,7 +61,8 @@ def bing_run_query(search_terms):
             results.append({
             'title': result['Title'],
             'link': result['Url'],
-            'summary': result['Description']})
+            'summary': result['Description'],
+            'from':'Bing.com'})
 
     # Catch a URLError exception - something went wrong when connecting!
     except urllib2.URLError as e:

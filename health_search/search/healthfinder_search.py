@@ -31,9 +31,9 @@ def healthfinder_run_query(search_terms):
     )
 
     print search_url
-    results = []
+    primary_results = []
     # healthfinder returns related items, these will be added to the end
-    secondaryresults = []
+    secodary_results = []
     try:
 
         response = urllib2.urlopen(search_url).read()
@@ -41,31 +41,23 @@ def healthfinder_run_query(search_terms):
 
         if json_response['Result']['Error'] == 'False' and json_response['Result']['Total'] != '0':
             for result in json_response['Result']['Topics']:
-                results.append({
+                primary_results.append({
                     'title': result['Title'],
                     'link': result['AccessibleVersion'],
-                    'summary': result['Populations']})
-                for secondaryresult in result['RelatedItems']:
-                    print 'Title    test    ',secondaryresult['Title']
-                    print 'Url      test    ',secondaryresult['Url']
-                    print 'summary  test    ',result['Populations']
-                    secondaryresults.append({
-                        'title': secondaryresult['Title'],
-                        'link': secondaryresult['Url'],
-                        'summary': result['Populations']})
+                    'summary': result['Populations'],
+                    'from': 'HealthFinder.gov'})
+                for secodary_result in result['RelatedItems']:
+                    secodary_results.append({
+                        'title': secodary_result['Title'],
+                        'link': secodary_result['Url'],
+                        'summary': result['Populations'],
+                        'from': 'HealthFinder.gov'})
+
 
 
     except urllib2.URLError as e:
         print "Error when querying the HealthFinder API: ", e
 
+    results = primary_results + secodary_results
 
-    print 'primary'
-    print
-    print results
-    print
-    print 'secodary'
-    print
-    print secondaryresult
-
-    results.append(secondaryresult)
     return results
