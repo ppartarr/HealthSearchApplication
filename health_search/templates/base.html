@@ -43,9 +43,8 @@
             </form>
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
-                <li><a href="{% url 'restricted' %}">Restricted Page</a></li>
                 <li><a href="{url 'user'}">Welcome {{ user.username }}</a></li>
-                <li><a href="{% url 'auth_logout' %}">Logout</a></li>
+                <li><a href="{% url 'auth_logout' %}">Logout</a></li> <!-- todo implemt -->
                 {% else %}
                 <li><a href="{% url 'registration_register' %}">Register Here</a></li>
                 <li><a href="{% url 'auth_login' %}">Login</a></li>
