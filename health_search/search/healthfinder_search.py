@@ -32,8 +32,8 @@ def run_query(search_terms):
 
         json_response = json.loads(response)
 
-        if json_response['Result']['Error'] == 'False'
-            for result in json_response['Result']['Topics']
+        if json_response['Result']['Error'] == 'False':
+            for result in json_response['Result']['Topics']:
                 results.append({
                     'title': result['Title'],
                     'link': result['AccessibleVersion'],
