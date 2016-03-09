@@ -1,3 +1,4 @@
+/health_search/search/keys.py
 *.pyc
 *.xml
 /health_search/db.sqlite3
