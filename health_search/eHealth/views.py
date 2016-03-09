@@ -7,4 +7,9 @@ from health_search.settings import STATIC_PATH
 from datetime import datetime
 
 
-# Create your views here.
+def index(request):
+    response = render(request, 'eHealth/index.html')
+    return response
+
+def about(request):
+    return render(request, 'eHealth/about.html')
