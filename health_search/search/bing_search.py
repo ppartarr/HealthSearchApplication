@@ -1,8 +1,8 @@
 import json
 import urllib, urllib2
-from keys import BING_KEY
+from keys import Bing_Key
 
-BING_API_KEY = BING_KEY
+BING_API_KEY = Bing_Key
 
 if __name__ == '__main__':
     main()
