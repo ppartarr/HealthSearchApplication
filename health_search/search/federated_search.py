@@ -8,7 +8,9 @@ if __name__ == '__main__':
 
 # todo check
 def federated_run_querys(search_terms):
-    Bing_results = bing_run_query(search_terms)
+    #todo
+    Bing_results =[]# bing_run_query(search_terms)
+    print 'trying healthfinder'
     HealthFinder_results = healthfinder_run_query(search_terms)
     MedlinePlus_results = medlineplus_run_query(search_terms)
 
@@ -41,20 +43,19 @@ def federated_run_querys(search_terms):
             mid=Bing_results
             shortest=HealthFinder_results
 
-
     #combines results from the api's into one list
     #mergis the results untill a list runs out, then merges the remain lists
     for i in range(len(shortest)):
-        results+=longest[i]
-        results+=mid[i]
-        results+=shortest[i]
+        results.append(longest[i])
+        results.append(mid[i])
+        results.append(shortest[i])
 
     for i in range(len(shortest),len(mid)):
-        results+=longest[i]
-        results+=mid[i]
+        results.append(longest[i])
+        results.append(mid[i])
 
     for i in range (len(mid),len(longest)):
-        results+=longest[i]
+        results.append(longest[i])
 
 
 

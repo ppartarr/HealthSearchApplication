@@ -1,15 +1,7 @@
-from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
-from health_search.settings import STATIC_PATH
-from datetime import datetime
 
+from search.federated_search import federated_run_querys
 
-#todo fix
-#from search.federated_search import federated_run_querys
-#from federated_search import federated_run_querys
 
 def index(request):
     response = render(request, 'eHealth/index.html')
@@ -28,5 +20,6 @@ def search(request):
 
         if query:
             result_list = federated_run_querys(query)
+            print result_list
 
     return render(request, 'eHealth/search.html', {'result_list': result_list})
