@@ -8,8 +8,8 @@ from datetime import datetime
 
 
 #todo fix
-from search.federated_search import federated_run_querys
-from federated_search import federated_run_querys
+#from search.federated_search import federated_run_querys
+#from federated_search import federated_run_querys
 
 def index(request):
     response = render(request, 'eHealth/index.html')
