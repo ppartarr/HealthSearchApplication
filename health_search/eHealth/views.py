@@ -7,12 +7,27 @@ from health_search.settings import STATIC_PATH
 from datetime import datetime
 
 
+#todo fix
+from search.federated_search import federated_run_querys
+from federated_search import federated_run_querys
+
 def index(request):
     response = render(request, 'eHealth/index.html')
     return response
 
+
 def about(request):
     return render(request, 'eHealth/about.html')
 
+
 def search(request):
-    return render(request, 'eHealth/search.html')
+    result_list = []
+
+    if request.method == 'POST':
+        query = request.POST['query'].strip()
+
+        if query:
+            # Run our Bing function to get the results list!
+            result_list = federated_run_querys(query)
+
+    return render(request, 'rango/search.html', {'result_list': result_list})
