@@ -13,7 +13,11 @@ def about(request):
 
 
 def search(request):
-    result_list = []
+    result_list = {'federated_results': [],
+                   'bing_results': [],
+                   'healthFinder_results': [],
+                   'medlinePlus_results': []
+    }
 
     if request.method == 'POST':
         query = request.POST['query'].strip()
@@ -21,4 +25,4 @@ def search(request):
         if query:
             result_list = federated_run_querys(query)
 
-    return render(request, 'eHealth/search.html', {'result_list': result_list})
+    return render(request, 'eHealth/search.html', result_list)

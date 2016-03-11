@@ -14,32 +14,32 @@ def federated_run_querys(search_terms):
 
     results = []
 
-    #finds finds the shortest, mid and logest responce
+    # finds finds the shortest, mid and logest responce
     #put them into variables called longest, mid and shortest
-    if len(Bing_results)>=len(HealthFinder_results) and len(Bing_results)>=len(MedlinePlus_results):
-        longest=Bing_results
-        if len(HealthFinder_results)>=len(MedlinePlus_results):
-            mid=HealthFinder_results
-            shortest=MedlinePlus_results
+    if len(Bing_results) >= len(HealthFinder_results) and len(Bing_results) >= len(MedlinePlus_results):
+        longest = Bing_results
+        if len(HealthFinder_results) >= len(MedlinePlus_results):
+            mid = HealthFinder_results
+            shortest = MedlinePlus_results
         else:
-            mid=MedlinePlus_results
-            shortest=HealthFinder_results
-    elif len(HealthFinder_results)>=len(Bing_results) and len(HealthFinder_results)>=len(MedlinePlus_results):
-        longest=HealthFinder_results
-        if len(Bing_results)>=len(MedlinePlus_results):
-            mid=Bing_results
-            shortest=MedlinePlus_results
+            mid = MedlinePlus_results
+            shortest = HealthFinder_results
+    elif len(HealthFinder_results) >= len(Bing_results) and len(HealthFinder_results) >= len(MedlinePlus_results):
+        longest = HealthFinder_results
+        if len(Bing_results) >= len(MedlinePlus_results):
+            mid = Bing_results
+            shortest = MedlinePlus_results
         else:
-            mid=MedlinePlus_results
-            shortest=Bing_results
+            mid = MedlinePlus_results
+            shortest = Bing_results
     else:
-        longest=MedlinePlus_results
-        if len(HealthFinder_results)>=len(Bing_results):
-            mid=HealthFinder_results
-            shortest=Bing_results
+        longest = MedlinePlus_results
+        if len(HealthFinder_results) >= len(Bing_results):
+            mid = HealthFinder_results
+            shortest = Bing_results
         else:
-            mid=Bing_results
-            shortest=HealthFinder_results
+            mid = Bing_results
+            shortest = HealthFinder_results
 
     #combines results from the api's into one list
     #mergis the results untill a list runs out, then merges the remain lists
@@ -48,13 +48,15 @@ def federated_run_querys(search_terms):
         results.append(mid[i])
         results.append(shortest[i])
 
-    for i in range(len(shortest),len(mid)):
+    for i in range(len(shortest), len(mid)):
         results.append(longest[i])
         results.append(mid[i])
 
-    for i in range (len(mid),len(longest)):
+    for i in range(len(mid), len(longest)):
         results.append(longest[i])
 
-
-
-    return results
+    return {'federated_results': results,
+            'bing_results': Bing_results,
+            'healthFinder_results': HealthFinder_results,
+            'medlinePlus_results': MedlinePlus_results
+    }
