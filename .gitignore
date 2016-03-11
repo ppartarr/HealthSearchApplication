@@ -1,4 +1,4 @@
 *.pyc
 *.xml
 /health_search/db.sqlite3
-db.sqlite
+*.sqlite
