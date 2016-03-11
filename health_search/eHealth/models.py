@@ -1,12 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     picture = models.ImageField(upload_to='profile_images', blank=True)
+    dateOfBirth = models.DateField()
+    gender = models.CharField(max_length=140)
 
     def __unicode__(self):
         return self.user.username
+
 
 class Category(models.Model):
     user = models.ForeignKey(UserProfile)
@@ -14,6 +18,7 @@ class Category(models.Model):
 
     def __unicode__(self):
         return self.name
+
 
 class Page(models.Model):
     category = models.ForeignKey(Category)
