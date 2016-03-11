@@ -8,7 +8,7 @@ from medlineplus_search import medlineplus_run_query
 def federated_run_querys(search_terms):
     Bing_results = bing_run_query(search_terms)
     HealthFinder_results = healthfinder_run_query(search_terms)
-    MedlinePlus_results = [] #medlineplus_run_query(search_terms)
+    MedlinePlus_results = medlineplus_run_query(search_terms)
 
     results = []
 

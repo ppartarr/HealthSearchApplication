@@ -1,8 +1,8 @@
 import xml.etree.ElementTree as ET
 import urllib, urllib2
 
-if __name__ == '__main__':
-    main()
+#if __name__ == '__main__':
+#    main()
 
 def medlineplus_run_query(search_terms):
     root_url = "https://wsearch.nlm.nih.gov/ws/query?db=healthTopics&term="
@@ -36,4 +36,7 @@ def medlineplus_run_query(search_terms):
     except urllib2.URLError as e:
         print "Error when querying the Medline+ API: ", e
 
+    print results
     return results
+
+medlineplus_run_query("asthma")
