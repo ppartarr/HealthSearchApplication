@@ -4,7 +4,7 @@ from search.federated_search import federated_run_querys
 
 
 def index(request):
-    response = render(request, 'index.html')
+    response = render(request, 'eHealth/index.html')
     return response
 
 
