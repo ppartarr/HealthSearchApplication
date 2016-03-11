@@ -24,3 +24,9 @@ def search(request):
         if query:
             result_list = federated_run_querys(query)
     return render(request, 'eHealth/search.html', result_list)
+
+
+#todo implement
+def user(request):
+    response = render(request, 'eHealth/index.html')
+    return response

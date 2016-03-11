@@ -5,5 +5,7 @@ from eHealth import views
 urlpatterns = patterns('',
                        url(r'^$', views.index, name='index'),
                        url(r'^about/$', views.about, name='about'),
-                       url(r'^search/$', views.search, name='search'),#todo make a search page
+                       url(r'^search/$', views.search, name='search'),
+                       url(r'^user/',views.user,name='user')
+                      #url(r'^user/(?P<user_slug>[\w\-]+)/$',views.user,name='user')
                        )
