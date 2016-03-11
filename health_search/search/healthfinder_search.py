@@ -30,7 +30,6 @@ def healthfinder_run_query(search_terms):
         query
     )
 
-    print search_url
     primary_results = []
     # healthfinder returns related items, these will be added to the end
     secodary_results = []
