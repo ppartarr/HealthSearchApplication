@@ -14,7 +14,6 @@ def medlineplus_run_query(search_terms):
     )
 
     results=[]
-    print search_url
     try:
         response = urllib2.urlopen(search_url).read()
 
