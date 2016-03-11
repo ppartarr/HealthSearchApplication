@@ -27,6 +27,13 @@ def search(request):
     return render(request, 'eHealth/search.html', result_list)
 
 
+#todo implement
+def user(request):
+    response = render(request, 'eHealth/index.html')
+    return response
+
+
+
 def register(request):
 
     registered = False
