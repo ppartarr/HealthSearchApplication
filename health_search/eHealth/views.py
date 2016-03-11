@@ -23,5 +23,8 @@ def search(request):
 
         if query:
             result_list = federated_run_querys(query)
-
+    print result_list
+    for i in result_list:
+        print i, result_list[i]
+        print 
     return render(request, 'eHealth/search.html', result_list)
