@@ -1,7 +1,8 @@
-import xml, json
+import xml.etree.ElementTree as ET
 import urllib, urllib2
 
-
+if __name__ == '__main__':
+    main()
 
 def medlineplus_run_query(search_terms):
     root_url = "https://wsearch.nlm.nih.gov/ws/query?db=healthTopics&term="
@@ -14,18 +15,29 @@ def medlineplus_run_query(search_terms):
     results=[]
     try:
         response = urllib2.urlopen(search_url).read()
-
         #Convert the string response to a Python dictionary object
-        xml_response = xml.loads(response)
+        xml_response = ET.fromstring(response)
 
-        for result in xml_response['d']['results']:
+        for document in xml_response.iter('document'):
+            url = document.attrib.get('url')
+
+            for content in document:
+                if content.attrib.get('name') == 'title':
+                    title = content.text
+                if content.attrib.get('name') == 'snippet':
+                    summary = content.text
+
             results.append({
-                'title': result['Title'],
-                'link': result['Url'],
-                'summary': result['Description'],
-                'from': 'Bing.com',
+                'link': url,
+                'title': title,
+                'summary': summary,
+                'from': 'medline'
             })
+
     except urllib2.URLError as e:
         print "Error when querying the Medline+ API: ", e
 
     return results
+
+
+medlineplus_run_query('asthma')
