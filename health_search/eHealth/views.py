@@ -1,5 +1,4 @@
 from django.shortcuts import render
-
 from search.federated_search import federated_run_querys
 
 
