@@ -6,9 +6,6 @@ from keys import HealthFinder_key
 
 HealthFinder_API_KEY = HealthFinder_key
 
-if __name__ == '__main__':
-    main()
-
 
 def healthfinder_run_query(search_terms):
     root_url = 'http://healthfinder.gov/developer/'

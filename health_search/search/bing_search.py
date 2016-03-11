@@ -4,8 +4,6 @@ from keys import Bing_Key
 
 BING_API_KEY = Bing_Key
 
-if __name__ == '__main__':
-    main()
 
 def bing_run_query(search_terms):
     # Specify the base

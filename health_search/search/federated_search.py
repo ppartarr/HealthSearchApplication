@@ -2,8 +2,6 @@ from bing_search import bing_run_query
 from healthfinder_search import healthfinder_run_query
 from medlineplus_search import medlineplus_run_query
 
-if __name__ == '__main__':
-    main()
 
 
 # todo check
