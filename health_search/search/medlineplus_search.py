@@ -31,8 +31,7 @@ def medlineplus_run_query(search_terms):
                 'link': url,
                 'title': title,
                 'summary': summary,
-                'from': 'medline'
-            })
+                'from': 'medline'})
 
     except urllib2.URLError as e:
         print "Error when querying the Medline+ API: ", e
