@@ -38,6 +38,3 @@ def medlineplus_run_query(search_terms):
         print "Error when querying the Medline+ API: ", e
 
     return results
-
-
-medlineplus_run_query('asthma')
