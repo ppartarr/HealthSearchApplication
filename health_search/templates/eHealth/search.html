@@ -6,67 +6,121 @@
 
 {% block body_block %}
     <div class="page-header">
-            <ul ><!-- todo make this work -->
-                <li>Federated Search</li>
-                <li>Bing Search</li>
-                <li>Healthfinder Search</li>
-                <li>Medlineplus Search</li>
-            </ul>
+        page header
     </div>
     <div>
 
         <div class="panel">
-            {% if result_list %}
-                <div class="panel-heading">
-                <h3 class="panel-title">Results</h3>
-                <!-- Display search results in an ordered list -->
-                <div class="panel-body">
-                    <div class="list-group">
-                        {% for result in federated_results %}
-                            <div class="list-group-item">
-                                <h4 class="list-group-item-heading"><a
-                                        href="{{ result.link }}">{{ result.title }}</a></h4>
 
-                                <p class="list-group-item-text">{{ result.summary }}</p>
-                                <p class="list-group-item-text">{{ result.from }}</p> <!-- todo maby hyperlink? -->
+
+            <div class="tabs">
+                <ul class="tab-links">
+                    <li class="active"><a href="#tab1">Federated Search</a></li>
+                    <li><a href="#tab2">Bing Search</a></li>
+                    <li><a href="#tab3">Healthfinder Search</a></li>
+                    <li><a href="#tab4">Medlineplus Search</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div id="tab1" class="tab active">
+                        {% if federated_results %}
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Federated Search</h3>
+
+                                <div class="panel-body">
+                                    <div class="list-group">
+                                        {% for result in federated_results %}
+                                            <div class="list-group-item">
+                                                <h4 class="list-group-item-heading"><a
+                                                        href="{{ result.link }}">{{ result.title }}</a></h4>
+
+                                                <p class="list-group-item-text">{{ result.summary }}</p>
+
+                                                <p class="list-group-item-text">{{ result.from }}</p>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
                             </div>
-                        {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <div id="tab2" class="tab">
+                        {% if bing_results %}
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Bing Search</h3>
+
+                                <div class="panel-body">
+                                    <div class="list-group">
+                                        {% for result in bing_results %}
+                                            <div class="list-group-item">
+                                                <h4 class="list-group-item-heading"><a
+                                                        href="{{ result.link }}">{{ result.title }}</a></h4>
+
+                                                <p class="list-group-item-text">{{ result.summary }}</p>
+
+                                                <p class="list-group-item-text">{{ result.from }}</p>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+
+                        {% endif %}
+                    </div>
+
+                    <div id="tab3" class="tab">
+                        {% if healthFinder_results %}
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Healthfinder Search</h3>
+
+                                <div class="panel-body">
+                                    <div class="list-group">
+                                        {% for result in healthFinder_results %}
+                                            <div class="list-group-item">
+                                                <h4 class="list-group-item-heading"><a
+                                                        href="{{ result.link }}">{{ result.title }}</a></h4>
+
+                                                <p class="list-group-item-text">{{ result.summary }}</p>
+
+                                                <p class="list-group-item-text">{{ result.from }}</p>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+
+                        {% endif %}
+                    </div>
+
+                    <div id="tab4" class="tab">
+                        {% if medlinePlus_results %}
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Medlineplus Search</h3>
+
+                                <div class="panel-body">
+                                    <div class="list-group">
+                                        {% for result in medlinePlus_results %}
+                                            <div class="list-group-item">
+                                                <h4 class="list-group-item-heading"><a
+                                                        href="{{ result.link }}">{{ result.title }}</a></h4>
+
+                                                <p class="list-group-item-text">{{ result.summary }}</p>
+
+                                                <p class="list-group-item-text">{{ result.from }}</p>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+
+                        {% endif %}
+
                     </div>
                 </div>
-            {% endif %}
             </div>
         </div>
     </div>
 
-    <div class="tabs">
-    <ul class="tab-links">
-        <li class="active"><a href="#tab1">Tab #1</a></li>
-        <li><a href="#tab2">Tab #2</a></li>
-        <li><a href="#tab3">Tab #3</a></li>
-        <li><a href="#tab4">Tab #4</a></li>
-    </ul>
-
-    <div class="tab-content">
-        <div id="tab1" class="tab active">
-            <p>Tab #1 content goes here!</p>
-            <p>Donec pulvinar neque sed semper lacinia. Curabitur lacinia ullamcorper nibh; quis imperdiet velit eleifend ac. Donec blandit mauris eget aliquet lacinia! Donec pulvinar massa interdum risus ornare mollis.</p>
-        </div>
-
-        <div id="tab2" class="tab">
-            <p>Tab #2 content goes here!</p>
-            <p>Donec pulvinar neque sed semper lacinia. Curabitur lacinia ullamcorper nibh; quis imperdiet velit eleifend ac. Donec blandit mauris eget aliquet lacinia! Donec pulvinar massa interdum risus ornare mollis. In hac habitasse platea dictumst. Ut euismod tempus hendrerit. Morbi ut adipiscing nisi. Etiam rutrum sodales gravida! Aliquam tellus orci, iaculis vel.</p>
-        </div>
-
-        <div id="tab3" class="tab">
-            <p>Tab #3 content goes here!</p>
-            <p>Donec pulvinar neque sed semper lacinia. Curabitur lacinia ullamcorper nibh; quis imperdiet velit eleifend ac. Donec blandit mauris eget aliquet lacinia! Donec pulvinar massa interdum ri.</p>
-        </div>
-
-        <div id="tab4" class="tab">
-            <p>Tab #4 content goes here!</p>
-            <p>Donec pulvinar neque sed semper lacinia. Curabitur lacinia ullamcorper nibh; quis imperdiet velit eleifend ac. Donec blandit mauris eget aliquet lacinia! Donec pulvinar massa interdum risus ornare mollis. In hac habitasse platea dictumst. Ut euismod tempus hendrerit. Morbi ut adipiscing nisi. Etiam rutrum sodales gravida! Aliquam tellus orci, iaculis vel.</p>
-        </div>
-    </div>
-</div>
 
 {% endblock %}
