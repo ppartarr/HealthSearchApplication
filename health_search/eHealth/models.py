@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     picture = models.ImageField(upload_to='profile_images', blank=True)
-    dateOfBirth = models.DateField()
-    gender = models.BooleanField()
+    dateOfBirth = models.DateTimeField()
+    gender = models.CharField(max_length=10)
 
     def __unicode__(self):
         return self.user.username

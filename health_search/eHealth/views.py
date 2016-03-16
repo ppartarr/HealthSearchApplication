@@ -68,6 +68,6 @@ def register(request):
         profile_form = UserProfileForm()
 
     return render(request,
-            'eHealth/register.html',
+            'registration/register.html',
             {'user_form': user_form, 'profile_form': profile_form, 'registered': registered} )
 
