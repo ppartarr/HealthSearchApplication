@@ -13,7 +13,6 @@ jQuery(document).ready(function() {
     });
 function openNav() {
     document.getElementById("myNav").style.width = "100%";
-    $('#sidebar').cssRules(backgrou)
 }
 
 function closeNav() {
