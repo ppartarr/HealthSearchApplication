@@ -5,7 +5,7 @@ from eHealth.models import UserProfile
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
-
+    dateOfBirth = forms.DateField(widget=forms.SelectDateWidget())
     class Meta:
         model = User
         fields = ('username', 'email', 'password')

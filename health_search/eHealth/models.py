@@ -6,7 +6,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User)
     picture = models.ImageField(upload_to='profile_images', blank=True)
     dateOfBirth = models.DateField()
-    gender = models.CharField(max_length=140)
+    gender = models.BooleanField()
 
     def __unicode__(self):
         return self.user.username

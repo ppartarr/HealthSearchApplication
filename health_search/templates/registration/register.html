@@ -1,19 +1,10 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Rango</title>
-    </head>
+{% extends "base.html" %}
 
-    <body>
-        <h1>Register with Rango</h1>
+{% block body_block %}
 
-        {% if registered %}
-        Rango says: <strong>thank you for registering!</strong>
-        <a href="/rango/">Return to the homepage.</a><br />
-        {% else %}
-        Rango says: <strong>register here!</strong><br />
+        <h2 class="form-signin-heading">Sign Up Here</h2>
 
-        <form id="user_form" method="post" action="/rango/register/"
+        <form id="user_form" method="post" action=""
                 enctype="multipart/form-data">
 
             {% csrf_token %}
@@ -27,6 +18,4 @@
             <!-- Provide a button to click to submit the form. -->
             <input type="submit" name="submit" value="Register" />
         </form>
-        {% endif %}
-    </body>
-</html>
+{% endblock %}
