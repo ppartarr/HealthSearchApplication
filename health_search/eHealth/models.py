@@ -3,10 +3,11 @@ from django.contrib.auth.models import User
 
 
 class UserProfile(models.Model):
+    gender_choices=(('male','Male',),('female','Female',))
     user = models.OneToOneField(User)
     picture = models.ImageField(upload_to='profile_images', blank=True)
     dateOfBirth = models.DateTimeField()
-    gender = models.CharField(max_length=10)
+    gender = models.CharField(max_length=6,choices=gender_choices)
 
     def __unicode__(self):
         return self.user.username

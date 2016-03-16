@@ -11,9 +11,10 @@ class UserForm(forms.ModelForm):
         fields = ('username', 'email', 'password')
 
 class UserProfileForm(forms.ModelForm):
-    gender_choices=(('1','male',),('2','female',))
+    gender_choices=[('male','Male',),('female','Female',)]
+
     dateOfBirth=forms.DateTimeField(widget=extras.SelectDateWidget)
-    gender = forms.CharField(widget=forms.RadioSelect)#,choices=gender_choices)
+    gender = forms.ChoiceField(choices=gender_choices)
     class Meta:
         model = UserProfile
         fields = ('dateOfBirth', 'gender','picture')
