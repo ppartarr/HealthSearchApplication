@@ -16,9 +16,9 @@
 
                 <a href="{%  url 'add_category' %}"> add catagory</a><br/>
     </ul>
-    {% if all_caegories %}
+    {% if all_categories %}
         <ul>
-        {% for cat in all_caegories %}
+        {% for cat in all_categories %}
             <li><a href="{% url 'category' category.slug %}">{{ category.name }}</a></li>
         {% endfor %}
         </ul>
