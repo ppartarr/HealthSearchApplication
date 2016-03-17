@@ -24,3 +24,7 @@ def add_user(name):
     u = UserProfile.objects.get_or_create()[0]
     u.save()
     return u
+
+if __name__ == '__main__':
+    print "Starting the population script"
+    populate()
