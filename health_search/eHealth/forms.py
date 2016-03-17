@@ -61,4 +61,5 @@ class CategoryForm(forms.ModelForm):
     class Meta:
         # Provide an association between the ModelForm and a model
         model = Category
+        exclude = ('user',)#todo not sure if i need this 
         fields = ('name',)
