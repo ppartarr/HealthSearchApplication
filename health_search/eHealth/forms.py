@@ -13,7 +13,7 @@ class UserForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
     gender_choices=[('male','Male',),('female','Female',)]
 
-    dateOfBirth=forms.DateTimeField(widget=extras.SelectDateWidget)
+    dateOfBirth=forms.DateField(widget=extras.SelectDateWidget)
     gender = forms.ChoiceField(choices=gender_choices)
     class Meta:
         model = UserProfile
