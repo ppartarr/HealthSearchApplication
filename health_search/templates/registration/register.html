@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 
 {% block body_block %}
+    {% if registered %}
+        <h2>thank you for registering!</h2>
+        <a href="/">Return to the homepage.</a><br />
+
+
+    {% else %}
 
         <h2 class="form-signin-heading">Sign Up Here</h2>
 
@@ -23,4 +29,6 @@
             <!-- Provide a button to click to submit the form. -->
             <input type="submit" name="submit" value="Register" />
         </form>
+    {% endif %}
+
 {% endblock %}
