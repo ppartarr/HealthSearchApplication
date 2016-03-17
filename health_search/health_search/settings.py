@@ -36,6 +36,7 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+
 REGISTRATION_OPEN = True        # If True, users can register
 ACCOUNT_ACTIVATION_DAYS = 7     # One-week activation window; you may, of course, use a different value.
 REGISTRATION_AUTO_LOGIN = True  # If True, the user will be automatically logged in.
@@ -48,6 +49,7 @@ LOGIN_URL = '/'                 # The page users are directed to if they are not
 
 # Application definition
 
+#todo remove registration or fix
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',

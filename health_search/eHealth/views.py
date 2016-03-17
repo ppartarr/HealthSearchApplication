@@ -17,7 +17,7 @@ def default_context(dict):
         return default
     except:
         default={}
-        defult.update(dict)
+        default.update(dict)
         return default
 
 def index(request):
@@ -46,15 +46,14 @@ def search(request):
 
 #todo implement
 def user(request):
-    print 'tests :'
-    username=request.user.get_username()
-    print 'username:',username
-    #dob=UserProfile.objects.
-    print 'dob:',dob
-    gender=''
-    email=''
+    context_dict={}
+    context_dict['username']=request.user.get_username()
+    user=UserProfile.objects.get()
+    context_dict['dob']=user.dateOfBirth
+    context_dict['gender']=user.gender
+    #email=
     all_caegories=''
-    response = render(request, 'eHealth/user.html',default_context({}))
+    response = render(request, 'eHealth/user.html',default_context({context_dict}))
     return response
 
 
