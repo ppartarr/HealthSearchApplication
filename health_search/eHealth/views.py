@@ -46,7 +46,8 @@ def search(request):
 
 #todo implement
 def user(request):
-    user=UserProfile.objects.get()
+
+    user=UserProfile.objects.filter(user=request.user).get()
     context_dict = {}
     context_dict['username']=request.user.get_username()
     context_dict['email']   = request.user.email
