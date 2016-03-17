@@ -22,7 +22,7 @@ def populate():
 
 
 def add_user(name, gender_choices, dob):
-    u = UserProfile.objects.get_or_create(username=name, gender=gender_choices, dateOfBirth=dob)[0]
+    u = UserProfile.objects.get_or_create(user=name, gender=gender_choices, dateOfBirth=dob)[0]
     u.save()
     return u
 
