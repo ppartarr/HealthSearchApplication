@@ -6,7 +6,7 @@ class UserProfile(models.Model):
     gender_choices=(('male','Male',),('female','Female',))
     user = models.OneToOneField(User)
     picture = models.ImageField(upload_to='profile_images', blank=True)
-    dateOfBirth = models.DateTimeField()
+    dateOfBirth = models.DateField()
     gender = models.CharField(max_length=6,choices=gender_choices)
 
     def __unicode__(self):
