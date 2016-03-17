@@ -1,4 +1,5 @@
 __author__ = 'Philippe'
+import os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE','eHealth.settings')
 
 import django
