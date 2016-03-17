@@ -4,6 +4,7 @@ from eHealth.forms import UserForm, UserProfileForm, PageForm, CategoryForm
 from eHealth.models import Category,Page,UserProfile
 from django.contrib.auth import authenticate, login
 from django.core.context_processors import request
+from django.contrib.auth.models import User
 from django.template import RequestContext
 
 
@@ -12,11 +13,11 @@ def default_context(dict):
         user = request.user.get_username()
         category_list = Category.objects.filter(user=user).order_by('-likes')[:5]
         page_list = Page.objects.filter(user=user).order_by('-views')[:5]
-        default= {'categories': category_list, 'pages': page_list}
+        default = {'categories': category_list, 'pages': page_list}
         default.update(dict)
         return default
     except:
-        default={}
+        default = {}
         default.update(dict)
         return default
 
@@ -33,8 +34,8 @@ def search(request):
     result_list = {'federated_results': [],
                    'bing_results': [],
                    'healthFinder_results': [],
-                   'medlinePlus_results': []
-    }
+                   'medlinePlus_results': [],
+                    }
 
     if request.method == 'POST':
         query = request.POST['query'].strip()
@@ -46,7 +47,6 @@ def search(request):
 
 #todo implement
 def user(request):
-
     user = UserProfile.objects.filter(user=request.user).get()
     context_dict = {}
     context_dict['username']        = request.user.get_username()
@@ -54,7 +54,7 @@ def user(request):
     context_dict['dob']             = user.dateOfBirth
     context_dict['gender']          = user.gender
     context_dict['all_caegories']   = Category.objects.filter(user=user)
-    response = render(request, 'eHealth/user.html',default_context(context_dict))
+    response = render(request, 'eHealth/user.html', default_context(context_dict))
     return response
 
 
