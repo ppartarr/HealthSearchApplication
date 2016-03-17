@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect
 from search.federated_search import federated_run_querys
 from eHealth.forms import UserForm, UserProfileForm
+from django.contrib.auth import authenticate, login
 
 
 def index(request):
@@ -63,6 +64,10 @@ def register(request):
             profile.save()
 
             registered = True
+            new_user = authenticate(username=request.POST['username'],
+                                    password=request.POST['password'],
+                                    )
+            login(request, new_user)
 
         else:
             print user_form.errors, profile_form.errors
