@@ -18,36 +18,33 @@ def _html_stripper(url):
     text=html.strip_tags(text)
     return text
 
-def get_readability_score(url):
-    text=_html_stripper(url)
+def _get_readability_score(text):
     readability_score=textstat.flesch_reading_ease(text)
     return readability_score
 
-def get_polarity_score(url):
-    text=_html_stripper(url)
-
-    polarity_score=TextBlob.polarity(text)
+def _get_polarity_score(text):
+    polarity_score = TextBlob.polarity(text)
     #polarity is returns as a flot between (-1.0,1.0) this converts it to a int between (0,100)
-    polarity_score= int(50+(polarity_score*50))
+    polarity_score = int(50+(polarity_score*50))
     return polarity_score
 
 
-def get_subjectivity_score(url):
-
-    text=_html_stripper(url)
-
-    subjectivity_score=TextBlob.subjectivity(text)
+def _get_subjectivity_score(text):
+    subjectivity_score = TextBlob.subjectivity(text)
     #subjectivity is returns as a flot between (0.0,1.0) this converts it to a int between (0,100)
-    subjectivity_score= int((subjectivity_score*100))
+    subjectivity_score = int(subjectivity_score*100)
 
     return subjectivity_score
 
 
 
 def get_all_scores(url):
-    readability=get_readability_score(url)
-    polarity=get_polarity_score(url)
-    subjectivity=get_subjectivity_score(url)
+    text=_html_stripper(url)
+
+    readability  = _get_readability_score(text)
+    polarity     = _get_polarity_score(text)
+    subjectivity = _get_subjectivity_score(text)
+
     return (readability,polarity,subjectivity)
 #todo add score to db
 
