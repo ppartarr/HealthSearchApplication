@@ -53,7 +53,7 @@ def user(request):
     context_dict['gender']=user.gender
     #email=
     all_caegories=''
-    response = render(request, 'eHealth/user.html',default_context({context_dict}))
+    response = render(request, 'eHealth/user.html',default_context(context_dict))
     return response
 
 
