@@ -8,15 +8,15 @@ from django.core import validators
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
-    password2 = forms.CharField(widget=forms.PasswordInput())
+    passwordAgain = forms.CharField(widget=forms.PasswordInput())
 
     def clean_password2(self):
         password = self.cleaned_data.get('password')
-        password2 = self.cleaned_data.get('password2')
-        if password and password2:
-            if password != password2:
+        passwordAgain = self.cleaned_data.get('passwordAgain')
+        if password and passwordAgain:
+            if password != passwordAgain:
                 raise forms.ValidationError("The two password fields didn't match.")
-        return password2
+        return passwordAgain
 
     class Meta:
         model = User
