@@ -1,6 +1,6 @@
-Health Search App
+## Search App
 ###Team Members 
-* thekevinchi         : Kevin 2079830t
+* thekevinchi         : Kevin       2079830
 * JDHL                : 
 * 2142915, gallicism  : 
-* aratherstrangeman   : 
+* aratherstrangeman   : Christopher 2128878
