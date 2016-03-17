@@ -101,5 +101,5 @@ def register(request):
 
     return render(request,
             'registration/register.html',
-            defult_context({'user_form': user_form, 'profile_form': profile_form, 'registered': registered}))
+            default_context({'user_form': user_form, 'profile_form': profile_form, 'registered': registered}))
 
