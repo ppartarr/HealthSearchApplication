@@ -1,2 +1,6 @@
 Health Search App
-Team C (woooo)
+###Team Members 
+*thekevinchi         : Kevin 2079830t
+*JDHL                : 
+*2142915, gallicism  : 
+*aratherstrangeman   : 
