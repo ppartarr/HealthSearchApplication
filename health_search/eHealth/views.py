@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect
 from search.federated_search import federated_run_querys
 from eHealth.forms import UserForm, UserProfileForm
 
@@ -35,6 +35,9 @@ def user(request):
 
 
 def register(request):
+
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('/')
 
     registered = False
 
