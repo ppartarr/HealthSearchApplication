@@ -5,6 +5,7 @@ from keys import Bing_Key
 BING_API_KEY = Bing_Key
 
 
+
 def bing_run_query(search_terms):
     # Specify the base
     root_url = 'https://api.datamarket.azure.com/Bing/Search/'
@@ -56,10 +57,10 @@ def bing_run_query(search_terms):
         # Loop through each page returned, populating out results list.
         for result in json_response['d']['results']:
             results.append({
-            'title': result['Title'],
-            'link': result['Url'],
-            'summary': result['Description'],
-            'from':'Bing.com'})
+                'title': result['Title'],
+                'link': result['Url'],
+                'summary': result['Description'],
+                'from': 'Bing.com'})
 
     # Catch a URLError exception - something went wrong when connecting!
     except urllib2.URLError as e:
