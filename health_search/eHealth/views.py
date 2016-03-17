@@ -52,7 +52,7 @@ def user(request):
     context_dict['email']   = request.user.email
     context_dict['dob']     = user.dateOfBirth
     context_dict['gender']  = user.gender
-    all_caegories=''
+    all_caegories=Category.objects.filter(user=user)
     response = render(request, 'eHealth/user.html',default_context(context_dict))
     return response
 
