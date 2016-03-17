@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect
 from search.federated_search import federated_run_querys
 from eHealth.forms import UserForm, UserProfileForm
-from eHealth.models import Category,Page
+from eHealth.models import Category,Page,UserProfile
 from django.contrib.auth import authenticate, login
 from django.core.context_processors import request
 from django.template import RequestContext
@@ -9,8 +9,9 @@ from django.template import RequestContext
 
 def defult_context(dict):
     try:
-        category_list= Category.objects.order_by('-likes')[:5]
-        page_list = Page.objects.order_by('-views')[:5]
+        user=request.user.get_username()
+        category_list= Category.objects.filter(user=user).order_by('-likes')[:5]
+        page_list = Page.objects.filter(user=user).order_by('-views')[:5]
         defult= {'categories': category_list, 'pages': page_list}
         defult.update(dict)
         return defult
@@ -45,7 +46,15 @@ def search(request):
 
 #todo implement
 def user(request):
-    response = render(request, 'eHealth/index.html',defult_context({}))
+    print 'tests :'
+    username=request.user.get_username()
+    print 'username:',username
+    dob=''#UserProfile.objects
+    print 'dob:',dob
+    gender=''
+    email=''
+    all_caegories=''
+    response = render(request, 'eHealth/user.html',defult_context({}))
     return response
 
 
