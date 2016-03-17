@@ -46,12 +46,12 @@ def search(request):
 
 #todo implement
 def user(request):
-    context_dict={}
-    context_dict['username']=request.user.get_username()
     user=UserProfile.objects.get()
-    context_dict['dob']=user.dateOfBirth
-    context_dict['gender']=user.gender
-    #email=
+    context_dict = {}
+    context_dict['username']=request.user.get_username()
+    context_dict['email']   = request.user.email
+    context_dict['dob']     = user.dateOfBirth
+    context_dict['gender']  = user.gender
     all_caegories=''
     response = render(request, 'eHealth/user.html',default_context(context_dict))
     return response
