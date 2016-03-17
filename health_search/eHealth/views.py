@@ -49,7 +49,7 @@ def user(request):
     print 'tests :'
     username=request.user.get_username()
     print 'username:',username
-    dob=''#UserProfile.objects
+    dob=UserProfile.objects.
     print 'dob:',dob
     gender=''
     email=''
