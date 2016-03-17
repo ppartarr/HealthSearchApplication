@@ -7,26 +7,26 @@ from django.core.context_processors import request
 from django.template import RequestContext
 
 
-def defult_context(dict):
+def default_context(dict):
     try:
-        user=request.user.get_username()
-        category_list= Category.objects.filter(user=user).order_by('-likes')[:5]
+        user = request.user.get_username()
+        category_list = Category.objects.filter(user=user).order_by('-likes')[:5]
         page_list = Page.objects.filter(user=user).order_by('-views')[:5]
-        defult= {'categories': category_list, 'pages': page_list}
-        defult.update(dict)
-        return defult
+        default= {'categories': category_list, 'pages': page_list}
+        default.update(dict)
+        return default
     except:
-        defult={}
+        default={}
         defult.update(dict)
-        return defult
+        return default
 
 def index(request):
-    response = render(request, 'eHealth/index.html',defult_context({}))
+    response = render(request, 'eHealth/index.html',default_context({}))
     return response
 
 
 def about(request):
-    return render(request, 'eHealth/about.html',defult_context({}))
+    return render(request, 'eHealth/about.html',default_context({}))
 
 
 def search(request):
@@ -41,7 +41,7 @@ def search(request):
 
         if query:
             result_list = federated_run_querys(query)
-    return render(request, 'eHealth/search.html', defult_context(result_list))
+    return render(request, 'eHealth/search.html', default_context(result_list))
 
 
 #todo implement
@@ -49,12 +49,12 @@ def user(request):
     print 'tests :'
     username=request.user.get_username()
     print 'username:',username
-    dob=UserProfile.objects.
+    #dob=UserProfile.objects.
     print 'dob:',dob
     gender=''
     email=''
     all_caegories=''
-    response = render(request, 'eHealth/user.html',defult_context({}))
+    response = render(request, 'eHealth/user.html',default_context({}))
     return response
 
 
