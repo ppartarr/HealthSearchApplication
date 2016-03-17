@@ -93,7 +93,7 @@
             {% if user.is_authenticated %}
                 <!-- todo make pritty -->
                 top 5 catorgys go here<br/>
-
+                <a href="{%  url 'add_category' %}"> add catagory</a><br/>
                 {% if categories %}
                     <ul>
                         {% for category in categories %}
