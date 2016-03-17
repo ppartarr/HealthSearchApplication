@@ -1,8 +1,9 @@
 from django import forms
 from django.contrib.auth.models import User
 from eHealth.models import UserProfile
-from registration.forms import RegistrationForm
 from django.forms import extras
+#TODO fix or remove
+#from registration.forms import RegistrationForm
 
 
 class UserForm(forms.ModelForm):
@@ -14,14 +15,16 @@ class UserForm(forms.ModelForm):
 
 
 class UserProfileForm(forms.ModelForm):
+    gender_choices=[('male','Male',),('female','Female',)]
+    ateOfBirth=forms.DateField(widget=extras.SelectDateWidget)
+    #gender = forms.ChoiceField(choices=gender_choices)
     class Meta:
         model = UserProfile
         fields = ('picture','dateOfBirth','gender')
 
+#TODO fix or remove
+#class UserProfileFormTest(RegistrationForm):
+    #gender_choices=[('male','Male',),('female','Female',)]
 
-class UserProfileFormTest(RegistrationForm):
-    gender_choices=[('male','Male',),('female','Female',)]
-
-    dateOfBirth=forms.DateField(widget=extras.SelectDateWidget)
-    gender = forms.ChoiceField(choices=gender_choices)
-    picture = forms.ImageField()
+    #dateOfBirth=forms.DateField(widget=extras.SelectDateWidget)
+    #gender = forms.ChoiceField(choices=gender_choices)
