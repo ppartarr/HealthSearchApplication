@@ -41,19 +41,26 @@ def healthfinder_run_query(request,search_terms):
         age,
         query
     )
+    print search_url
     try:
-
+        keys=[]
         response = urllib2.urlopen(search_url).read()
         json_response = json.loads(response)
 
         if json_response['Result']['Error'] == 'False' and json_response['Result']['Total'] != '0':
             #does not run is there are no responcese
             #if there is one responce json_response['Result']['Topics'] is a dict else it is a list of dicts
-            if json_response['Result']['Total'] == '1':
-                _extract_info(json_response['Result']['Topics'],primary_results,secodary_results)
-            else:
-                for result in json_response['Result']['Topics']:
-                    _extract_info(result,primary_results,secodary_results)
+            dict={}
+            if json_response['Result'].has_key('Topics'):
+                keys+=['Topics']
+            if json_response['Result'].has_key('Tools'):
+                keys+=['Tools']
+            for key in keys:
+                if json_response['Result']['Total'] == '1':
+                    _extract_info(json_response['Result'][key],primary_results,secodary_results)
+                else:
+                    for result in json_response['Result'][key]:
+                        _extract_info(result,primary_results,secodary_results)
 
     except urllib2.URLError as e:
         print "Error when querying the HealthFinder API: ", e
