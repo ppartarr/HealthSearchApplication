@@ -11,22 +11,22 @@ from eHealth.models import UserProfile, Category, Page
 
 def populate():
     add_user(name="Bob",
-             username="bobby",
+             username="bob",
              password="bob",
              email="bobby@bobby.com",
              gender_choices='male',
              dob="1978-06-23")
 
     add_user(name="Jen",
-             username="Jenny",
-             password="jen123",
+             username="jen",
+             password="jen",
              email="jen@hotmail.com",
              gender_choices='female',
              dob="1982-01-01")
 
     add_user(name="Jill",
-             username="Jill",
-             password="wordpass",
+             username="jill",
+             password="jill",
              email="jill@media.com",
              gender_choices='female',
              dob="1956-09-01")
