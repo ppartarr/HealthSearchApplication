@@ -52,7 +52,7 @@ def get_all_scores(url):
     try:
         text = _html_stripper(url)
     except:
-        print 'error reading page'
+        print 'error reading page at', url
         return (0, 0, 0)
 
     readability = _get_readability_score(text)
