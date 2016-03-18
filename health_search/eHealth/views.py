@@ -47,7 +47,6 @@ def search(request):
 
 #todo implement
 def user(request):
-    user = UserProfile.objects.filter(user=request.user).get()
     context_dict = {}
     try:
         user = UserProfile.objects.filter(user=request.user).get()
@@ -58,6 +57,7 @@ def user(request):
         context_dict['all_caegories']   = Category.objects.filter(user=user)
     except:
         print 'user profile error:',
+        return HttpResponseRedirect('/')
     response = render(request, 'eHealth/user.html',default_context(context_dict))
     return response
 
