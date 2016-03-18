@@ -46,14 +46,16 @@ def search(request):
 
 #todo implement
 def user(request):
-
-    user = UserProfile.objects.filter(user=request.user).get()
     context_dict = {}
-    context_dict['username']        = request.user.get_username()
-    context_dict['email']           = request.user.email
-    context_dict['dob']             = user.dateOfBirth
-    context_dict['gender']          = user.gender
-    context_dict['all_caegories']   = Category.objects.filter(user=user)
+    try:
+        user = UserProfile.objects.filter(user=request.user).get()
+        context_dict['username']        = request.user.get_username()
+        context_dict['email']           = request.user.email
+        context_dict['dob']             = user.dateOfBirth
+        context_dict['gender']          = user.gender
+        context_dict['all_caegories']   = Category.objects.filter(user=user)
+    except:
+        print 'user profile error:',
     response = render(request, 'eHealth/user.html',default_context(context_dict))
     return response
 
@@ -149,12 +151,19 @@ def add_page(request, category_name_slug):
     return render(request, 'eHealth/add_page.html', context_dict)
 
 def add_category(request):
+    try:
+        user = UserProfile.objects.get(user=request.user)
+    except:
+        user=None
     if request.method == 'POST':
         form = CategoryForm(request.POST)
-
         if form.is_valid():
-            form.save(commit=True)
-            return index(request)
+            if user:
+                cat = form.save(commit=False)
+                cat.user=user
+                cat.save()
+                return HttpResponseRedirect('/')
+
         else:
             print form.errors
     else:
