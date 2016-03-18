@@ -13,7 +13,7 @@
             {% if pages %}
                 <ul>
                     {% for page in pages %}
-                        <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                        <li><a href="{{ page.url }}">{{ page.title }}</a> flesch_score {{ page.flesch_score }}, polarity_score {{ page.polarity_score }}, subjectivity_score {{ page.subjectivity_score }}</li>
                     {% endfor %}
                 </ul>
             {% else %}
