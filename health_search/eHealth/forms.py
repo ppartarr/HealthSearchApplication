@@ -49,7 +49,7 @@ class PageForm(forms.ModelForm):
 
     class Meta:
         model = Page
-        exclude = ('category',)
+        exclude = ('category','flesch_score','polarity_score','subjectivity_score','summary',)
 
 class CategoryForm(forms.ModelForm):
     name = forms.CharField(max_length=128, help_text="Please enter the category name.")
@@ -61,5 +61,5 @@ class CategoryForm(forms.ModelForm):
     class Meta:
         # Provide an association between the ModelForm and a model
         model = Category
-        exclude = ('user',)#todo not sure if i need this 
+        exclude = ('user',)#todo not sure if i need this
         fields = ('name',)

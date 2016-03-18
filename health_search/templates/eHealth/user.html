@@ -8,22 +8,19 @@
     pic</br>
     <ul>
         <!-- todo make pritty -->
-        <li>Username:       {{ username }}</li>
-        <li>Date Of Birth:  {{ dob }}</li>
-        <li>Profession:     </li>
-        <li>Gender:         {{ gender }}</li>
-        <li>Email:          {{ email }}</li>
+        <li>Username: {{ username }}</li>
+        <li>Date Of Birth: {{ dob }}</li>
+        <li>Profession:</li>
+        <li>Gender: {{ gender }}</li>
+        <li>Email: {{ email }}</li>
 
-                <a href="{%  url 'add_category' %}"> add catagory</a><br/>
+        <a href="{% url 'add_category' %}"> add catagory</a><br/>
     </ul>
     {% if all_caegories %}
         <ul>
-        {% for cat in all_caegories %}
-                   <!-- todo  fix ( {'s removed for testing)
-                   <li><a href="% url 'category' category.slug %}">{ category.name }}</a></li>
-                   -->
-                <li>{{ cat.name }}</li>
-        {% endfor %}
+            {% for cat in all_caegories %}
+                <li><a href="{% url 'category' cat.slug %}">{{ cat.name }}</a></li>
+            {% endfor %}
         </ul>
     {% endif %}
 {% endblock %}

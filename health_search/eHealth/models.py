@@ -48,7 +48,7 @@ class Page(models.Model):
         self.polarity_score     = page_scores[1]
         self.subjectivity_score = page_scores[2]
         super(Page, self).save(*args, **kwargs)
-
+        #todo add summary
 
     def __unicode__(self):
         return self.title
