@@ -88,12 +88,12 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
-        {% block side_block %}
+
             <!--todo show catergories and pages -->
             {% if user.is_authenticated %}
                 <!-- todo make pretty -->
                 <h3>Your 5 most used categories</h3>
-                <a href="{%  url 'add_category' %}">add category</a><br/>
+                <a href="{% url 'add_category' %}">add category</a><br/>
                 {% if topcategories %}
                     <ul>
                         {% for category in topcategories %}
@@ -122,15 +122,18 @@
                 You must login to save pages
             {% endif %}
 
-        {% endblock %}
+            {% block side_block %}
 
-    </div>
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        <div>
-            {% block body_block %}{% endblock %}
+            {% endblock %}
+
+
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div>
+                {% block body_block %}{% endblock %}
+            </div>
         </div>
     </div>
-</div>
 </div>
 
 
