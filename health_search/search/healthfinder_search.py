@@ -41,7 +41,6 @@ def healthfinder_run_query(request,search_terms):
         age,
         query
     )
-    print search_url
     try:
         keys=[]
         response = urllib2.urlopen(search_url).read()
