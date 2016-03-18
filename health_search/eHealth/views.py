@@ -59,7 +59,7 @@ def user(request):
         context_dict['email']           = request.user.email
         context_dict['dob']             = user.dateOfBirth
         context_dict['gender']          = user.gender
-        context_dict['all_caegories']   = Category.objects.filter(user=user)
+        context_dict['all_categories']  = Category.objects.filter(user=user)
     except:
         print 'user profile error:',
         return HttpResponseRedirect('/')

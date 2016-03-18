@@ -7,7 +7,7 @@
 
     pic</br>
     <ul>
-        <!-- todo make pritty -->
+        <!-- todo make pretty -->
         <li>Username: {{ username }}</li>
         <li>Date Of Birth: {{ dob }}</li>
         <li>Profession:</li>
@@ -16,9 +16,9 @@
 
         <a href="{% url 'add_category' %}"> add category</a><br/>
     </ul>
-    {% if all_caegories %}
+    {% if all_categories %}
         <ul>
-            {% for cat in all_caegories %}
+            {% for cat in all_categories %}
                 <li><a href="{% url 'category' cat.slug %}">{{ cat.name }}</a></li>
             {% endfor %}
         </ul>
