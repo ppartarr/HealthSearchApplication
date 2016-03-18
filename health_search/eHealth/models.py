@@ -4,12 +4,18 @@ from django.template.defaultfilters import slugify
 from scores.scores import get_all_scores
 
 class UserProfile(models.Model):
+    def picname(self, *args, **kwargs):
+        username = self.user.get_username()
+        return 'profile_images/'+username
+
     gender_choices=(('male','Male',),('female','Female',))
     user = models.OneToOneField(User)
-    #todo remove
-    picture = models.ImageField(upload_to='profile_images', blank=True)
+    #todo remove?
+    picture = models.ImageField(upload_to=picname, blank=True)
     dateOfBirth = models.DateField()
     gender = models.CharField(max_length=6,choices=gender_choices)
+
+
 
     def __unicode__(self):
         return self.user.username

@@ -4,8 +4,8 @@
 
 
 {% block body_block %}
-
-    pic</br>
+    <!-- todo use { % media %} tag -->
+    <img src="../media/profile_images/{{ username }}" width="50%" height="50%"  onerror="this.onerror=null;this.src='{% static "images/defultImage.jpg" %}'" alt="Picture of a thing"/> <br/>
     <ul>
         <!-- todo make pretty -->
         <li>Username: {{ username }}</li>

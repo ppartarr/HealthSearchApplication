@@ -13,3 +13,12 @@ urlpatterns = patterns('',
                        url(r'^category/(?P<category_name_slug>[\w\-]+)/add_page/$', views.add_page, name='add_page'),
                        # url(r'^user/(?P<user_name>[\w\-]+)/$',views.user,name='user'),
                        )
+
+from django.conf import settings
+
+if settings.DEBUG:
+    urlpatterns += patterns(
+        'django.views.static',
+        (r'media/(?P<path>.*)',
+        'serve',
+        {'document_root': settings.MEDIA_ROOT}), )
