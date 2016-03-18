@@ -8,6 +8,9 @@ HealthFinder_API_KEY = HealthFinder_key
 
 
 def healthfinder_run_query(search_terms):
+    primary_results = []
+    # healthfinder returns related items, these will be added to the end
+    secodary_results = []
     root_url = 'http://healthfinder.gov/developer/'
     Return_Type = "json"
 
@@ -26,30 +29,19 @@ def healthfinder_run_query(search_terms):
         age,
         query
     )
-
-    primary_results = []
-    # healthfinder returns related items, these will be added to the end
-    secodary_results = []
     try:
 
         response = urllib2.urlopen(search_url).read()
         json_response = json.loads(response)
 
         if json_response['Result']['Error'] == 'False' and json_response['Result']['Total'] != '0':
-            for result in json_response['Result']['Topics']:
-                primary_results.append({
-                    'title': result['Title'],
-                    'link': result['AccessibleVersion'],
-                    'summary': result['Populations'],
-                    'from': 'HealthFinder.gov'})
-                for secodary_result in result['RelatedItems']:
-                    secodary_results.append({
-                        'title': secodary_result['Title'],
-                        'link': secodary_result['Url'],
-                        'summary': result['Populations'],
-                        'from': 'HealthFinder.gov'})
-
-
+            #does not run is there are no responcese
+            #if there is one responce json_response['Result']['Topics'] is a dict else it is a list of dicts
+            if json_response['Result']['Total'] == '1':
+                _extract_info(json_response['Result']['Topics'],primary_results,secodary_results)
+            else:
+                for result in json_response['Result']['Topics']:
+                    _extract_info(result,primary_results,secodary_results)
 
     except urllib2.URLError as e:
         print "Error when querying the HealthFinder API: ", e
@@ -57,3 +49,23 @@ def healthfinder_run_query(search_terms):
     results = primary_results + secodary_results
 
     return results
+
+
+def _extract_info(result,primary_results,secodary_results):
+    try:
+        primary_results.append({
+            'title': result['Title'],
+            'link': result['AccessibleVersion'],
+            'summary': result['Populations'],
+            'from': 'HealthFinder.gov'})
+    except:
+        print 'Error extracting healthfinder primary_results'
+    try:
+        for secodary_result in result['RelatedItems']:
+            secodary_results.append({
+                'title': secodary_result['Title'],
+                'link': secodary_result['Url'],
+                'summary': result['Populations'],
+                'from': 'HealthFinder.gov'})
+    except:
+        print 'Error extracting healthfinder secodary_results'
