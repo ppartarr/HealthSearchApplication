@@ -89,9 +89,9 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
         {% block side_block %}
-            <!--todo show catorgoys and pages -->
+            <!--todo show categories and pages -->
             {% if user.is_authenticated %}
-                <!-- todo make pritty -->
+                <!-- todo make pretty -->
                 top 5 categories go here<br/>
                 <a href="{%  url 'add_category' %}"> add catagory</a><br/>
                 {% if categories %}
