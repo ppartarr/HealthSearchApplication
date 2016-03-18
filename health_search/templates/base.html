@@ -93,10 +93,10 @@
             {% if user.is_authenticated %}
                 <!-- todo make pretty -->
                 top 5 categories go here<br/>
-                <a href="{%  url 'add_category' %}"> add catagory</a><br/>
-                {% if categories %}
+                <a href="{%  url 'add_category' %}"> add category</a><br/>
+                {% if all_categories %}
                     <ul>
-                        {% for category in categories %}
+                        {% for category in all_categories %}
                             <li><a href="{% url 'category' category.slug %}">{{ category.name }}</a></li>
                         {% endfor %}
                     </ul>
@@ -114,7 +114,7 @@
                     </ul>
 
                 {% else %}
-                    <strong>There are no categories present.</strong><br/>
+                    <strong>There are no pages present.</strong><br/>
                 {% endif %}
 
 
