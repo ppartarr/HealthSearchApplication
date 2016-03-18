@@ -8,26 +8,31 @@ from django.contrib.auth.models import User
 from django.template import RequestContext
 
 
-def default_context(dict):
+def default_context(request,dict):
     try:
-        user = request.user.get_username()
-        category_list = Category.objects.filter(user=user).order_by('-likes')[:5]
-        page_list = Page.objects.filter(user=user).order_by('-views')[:5]
-        default= {'categories': category_list, 'pages': page_list}
+        user = UserProfile.objects.filter(user=request.user).get()
+        category_list = Category.objects.filter(user=user).order_by('-likes')[:5] #todo remove likes
+        page_list=[]
+        for cat in category_list:
+            page_list += Page.objects.filter(category=cat).order_by('-views')[:5] #todo fix as will show more that 5 pages du to +=
+        default= {'topcategories': category_list, 'toppages': page_list}
         default.update(dict)
+        print default
+        print '1'
         return default
     except:
+        print '2'
         default={}
         default.update(dict)
         return default
 
 def index(request):
-    response = render(request, 'eHealth/index.html',default_context({}))
+    response = render(request, 'eHealth/index.html',default_context(request,{}))
     return response
 
 
 def about(request):
-    return render(request, 'eHealth/about.html',default_context({}))
+    return render(request, 'eHealth/about.html',default_context(request,{}))
 
 
 def search(request):
@@ -42,7 +47,7 @@ def search(request):
 
         if query:
             result_list = federated_run_querys(query)
-    return render(request, 'eHealth/search.html', default_context(result_list))
+    return render(request, 'eHealth/search.html', default_context(request,result_list))
 
 
 #todo implement
@@ -58,7 +63,7 @@ def user(request):
     except:
         print 'user profile error:',
         return HttpResponseRedirect('/')
-    response = render(request, 'eHealth/user.html',default_context(context_dict))
+    response = render(request, 'eHealth/user.html',default_context(request,context_dict))
     return response
 
 
@@ -106,7 +111,7 @@ def register(request):
 
     return render(request,
             'registration/register.html',
-            default_context({'user_form': user_form, 'profile_form': profile_form, 'registered': registered}))
+            default_context(request,{'user_form': user_form, 'profile_form': profile_form, 'registered': registered}))
 
 def category(request, category_name_slug):
     context_dict = {}
@@ -124,7 +129,7 @@ def category(request, category_name_slug):
     except Category.DoesNotExist:
         pass
 
-    return render(request, 'eHealth/category.html', context_dict)
+    return render(request, 'eHealth/category.html', default_context(request,context_dict))
 
 
 #todo fix need to add user to cat field
@@ -150,7 +155,7 @@ def add_page(request, category_name_slug):
 
     context_dict = {'form': form, 'category': cat}
 
-    return render(request, 'eHealth/add_page.html', context_dict)
+    return render(request, 'eHealth/add_page.html', default_context(request,context_dict))
 
 def add_category(request):
     try:
@@ -170,4 +175,4 @@ def add_category(request):
             print form.errors
     else:
         form = CategoryForm()
-    return render(request, 'eHealth/add_category.html', {'form': form})
+    return render(request, 'eHealth/add_category.html', default_context(request,{'form': form}))

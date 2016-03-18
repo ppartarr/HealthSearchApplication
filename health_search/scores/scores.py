@@ -39,13 +39,17 @@ def _get_subjectivity_score(text):
 
 
 def get_all_scores(url):
-    text=_html_stripper(url)
+    try:
+        text=_html_stripper(url)
 
-    readability  = _get_readability_score(text)
-    polarity     = _get_polarity_score(text)
-    subjectivity = _get_subjectivity_score(text)
+        readability  = _get_readability_score(text)
+        polarity     = _get_polarity_score(text)
+        subjectivity = _get_subjectivity_score(text)
 
-    return (readability,polarity,subjectivity)
+        return (readability,polarity,subjectivity)
+    except:
+        print 'error reading page'
+        return(0,0,0)
 #todo add score to db
 
 

@@ -92,29 +92,29 @@
             <!--todo show catorgoys and pages -->
             {% if user.is_authenticated %}
                 <!-- todo make pritty -->
-                top 5 categories go here<br/>
-                <a href="{%  url 'add_category' %}"> add catagory</a><br/>
-                {% if categories %}
+                <h3>Your 5 most used categories</h3>
+                <a href="{%  url 'add_category' %}"> add categorie</a><br/>
+                {% if topcategories %}
                     <ul>
-                        {% for category in categories %}
+                        {% for category in topcategories %}
                             <li><a href="{% url 'category' category.slug %}">{{ category.name }}</a></li>
                         {% endfor %}
                     </ul>
                 {% else %}
-                    <strong>There are no categories present.</strong><br/>
+                    <strong>Add some categories to see them here.</strong><br/>
                 {% endif %}
 
-                top 5 pages go here<br/>
+                <h3>Your 5 most used pages</h3>
 
-                {% if pages %}
+                {% if toppages %}
                     <ul>
-                        {% for page in pages %}
+                        {% for page in toppages %}
                             <li><a href="{{ page.url }}">{{ page.title }}</a></li>
                         {% endfor %}
                     </ul>
 
                 {% else %}
-                    <strong>There are no categories present.</strong><br/>
+                    <strong>Add some pages to categories to see them here.</strong><br/>
                 {% endif %}
 
 
