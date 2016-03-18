@@ -43,7 +43,7 @@ def search(request):
         query = request.POST['query'].strip()
 
         if query:
-            result_list = federated_run_querys(query)
+            result_list = federated_run_querys(request,query)
     return render(request, 'eHealth/search.html', default_context(request,result_list))
 
 

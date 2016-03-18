@@ -3,11 +3,15 @@
 import json
 import urllib, urllib2
 from keys import HealthFinder_key
+from eHealth.models import UserProfile
+import datetime
+
+
 
 HealthFinder_API_KEY = HealthFinder_key
 
 
-def healthfinder_run_query(search_terms):
+def healthfinder_run_query(request,search_terms):
     primary_results = []
     # healthfinder returns related items, these will be added to the end
     secodary_results = []
@@ -17,9 +21,17 @@ def healthfinder_run_query(search_terms):
     query = "{0}".format(search_terms)
     query = urllib.quote(query)
 
-    # todo dont hardcode
-    gender = 'male'
-    age = '30'
+    #healthfinder requers age and gender
+    #if user is not loged in default age and gender are used
+    gender = 'female'
+    age = '35'
+
+    #if they are there age and gender are used
+    if request.user.is_authenticated():
+        user = UserProfile.objects.filter(user=request.user).get()
+        gender = user.gender
+        age =  str(datetime.date.today().year-user.dateOfBirth.year)
+
 
     search_url = "{0}Search.{1}?api_key={2}&gender={3}&age={4}&keyword={5}".format(
         root_url,
