@@ -17,11 +17,8 @@ def default_context(request,dict):
             page_list += Page.objects.filter(category=cat).order_by('-views')[:5] #todo fix as will show more that 5 pages du to +=
         default= {'topcategories': category_list, 'toppages': page_list}
         default.update(dict)
-        print default
-        print '1'
         return default
     except:
-        print '2'
         default={}
         default.update(dict)
         return default
