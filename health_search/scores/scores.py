@@ -18,7 +18,7 @@ def _html_stripper(url):
 
 def _get_readability_score(text):
     try:
-        readability_score = textstat.flesch_reading_ease(text)
+        readability_score = int(textstat.flesch_reading_ease(text))
         return readability_score
     except:
         print '_get_readability_score'
@@ -53,7 +53,7 @@ def get_all_scores(url):
         text = _html_stripper(url)
     except:
         print 'error reading page'
-        return (0, 0, 0)  # todo add score to db
+        return (0, 0, 0)
 
     readability = _get_readability_score(text)
     polarity = _get_polarity_score(text)
