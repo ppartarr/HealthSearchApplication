@@ -119,10 +119,11 @@ def category(request, category_name_slug):
         context_dict['category_name'] = category.name
         context_dict['category_name_slug'] = category.slug
 
-        pages = Page.objects.filter(category=category)
+        #Pages don't exist yet!
+        #pages = Page.objects.filter(category=category)
 
-        context_dict['pages'] = pages
-
+        #context_dict['pages'] = pages
+        #context_dict['category'] = category
     except Category.DoesNotExist:
         pass
 
