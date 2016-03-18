@@ -4,6 +4,7 @@ from eHealth.forms import UserForm, UserProfileForm, PageForm, CategoryForm
 from eHealth.models import Category,Page,UserProfile
 from django.contrib.auth import authenticate, login
 from django.core.context_processors import request
+from django.contrib.auth.models import User
 from django.template import RequestContext
 
 
@@ -33,8 +34,8 @@ def search(request):
     result_list = {'federated_results': [],
                    'bing_results': [],
                    'healthFinder_results': [],
-                   'medlinePlus_results': []
-    }
+                   'medlinePlus_results': [],
+                    }
 
     if request.method == 'POST':
         query = request.POST['query'].strip()
@@ -46,6 +47,7 @@ def search(request):
 
 #todo implement
 def user(request):
+    user = UserProfile.objects.filter(user=request.user).get()
     context_dict = {}
     try:
         user = UserProfile.objects.filter(user=request.user).get()
@@ -151,19 +153,12 @@ def add_page(request, category_name_slug):
     return render(request, 'eHealth/add_page.html', context_dict)
 
 def add_category(request):
-    try:
-        user = UserProfile.objects.get(user=request.user)
-    except:
-        user=None
     if request.method == 'POST':
         form = CategoryForm(request.POST)
-        if form.is_valid():
-            if user:
-                cat = form.save(commit=False)
-                cat.user=user
-                cat.save()
-                return HttpResponseRedirect('/')
 
+        if form.is_valid():
+            form.save(commit=True)
+            return index(request)
         else:
             print form.errors
     else:
