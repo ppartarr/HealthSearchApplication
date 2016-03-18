@@ -153,12 +153,19 @@ def add_page(request, category_name_slug):
     return render(request, 'eHealth/add_page.html', context_dict)
 
 def add_category(request):
+    try:
+        user = UserProfile.objects.get(user=request.user)
+    except:
+        user=None
     if request.method == 'POST':
         form = CategoryForm(request.POST)
-
         if form.is_valid():
-            form.save(commit=True)
-            return index(request)
+            if user:
+                cat = form.save(commit=False)
+                cat.user=user
+                cat.save()
+                return HttpResponseRedirect('/user')
+
         else:
             print form.errors
     else:
