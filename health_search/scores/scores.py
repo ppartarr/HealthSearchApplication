@@ -4,10 +4,6 @@ from textstat.textstat import textstat
 from textblob import TextBlob
 from django.utils import html
 
-######todo finish
-
-# todo get url from db
-url = "http://www.tangowithdjango.com/book17/chapters/new17.html"
 
 
 def _html_stripper(url):
@@ -31,7 +27,7 @@ def _get_readability_score(text):
 
 def _get_polarity_score(text):
     try:
-        polarity_score = TextBlob.polarity(text)
+        polarity_score = TextBlob(text).polarity
         # polarity is returns as a flot between (-1.0,1.0) this converts it to a int between (0,100)
         polarity_score = int(50 + (polarity_score * 50))
         return polarity_score
@@ -42,7 +38,7 @@ def _get_polarity_score(text):
 
 def _get_subjectivity_score(text):
     try:
-        subjectivity_score = TextBlob.subjectivity(text)
+        subjectivity_score = TextBlob(text).subjectivity
         # subjectivity is returns as a flot between (0.0,1.0) this converts it to a int between (0,100)
         subjectivity_score = int(subjectivity_score * 100)
 
@@ -64,3 +60,4 @@ def get_all_scores(url):
     subjectivity = _get_subjectivity_score(text)
 
     return (readability, polarity, subjectivity)
+
