@@ -111,10 +111,9 @@ def category(request, category_name_slug):
 
         if request.POST:
             public = request.POST.get('public')
-            category.public = bool(public)
+            category.public = (str(public)=='True')
             category.save()
         context_dict['public'] = category.public
-        print str(request.user) == str(category.user)
         try:
             if str(request.user) == str(category.user):
                 context_dict['is_owner'] = True
@@ -122,6 +121,13 @@ def category(request, category_name_slug):
                 context_dict['is_owner'] = False
         except:
             context_dict['is_owner'] = False
+
+        #if you are not aurthrised to view a page you are returned to index
+        print context_dict['is_owner'] or context_dict['public']
+        print context_dict['is_owner'], context_dict['public']
+        if not (context_dict['is_owner'] or context_dict['public']):
+            return HttpResponseRedirect('/')
+
     except Category.DoesNotExist:
         pass
 
