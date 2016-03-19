@@ -9,16 +9,20 @@
         <h1>{{ category_name }}</h1>
     </div>
     {% if public %}
-    category if public (click here to make it private)
+        category ifpublic
+        <button type="submit" class="btn btn-default">Make it private</button> <!--todo implment-->
     {% else %}
-    category if private (click here to make it public)
+        category ifprivate
+        <button type="button" class="btn btn-default">Make it public</button>  <!--todo implment-->
     {% endif %}
     <div>
         {% if category_name %}
             {% if pages %}
                 <ul>
                     {% for page in pages %}
-                        <li><a href="{{ page.url }}">{{ page.title }}</a> flesch_score {{ page.flesch_score }}, polarity_score {{ page.polarity_score }}, subjectivity_score {{ page.subjectivity_score }}</li>
+                        <li><a href="{{ page.url }}">{{ page.title }}</a> flesch_score {{ page.flesch_score }},
+                            polarity_score {{ page.polarity_score }}, subjectivity_score {{ page.subjectivity_score }}
+                        </li>
                     {% endfor %}
                 </ul>
             {% else %}

@@ -19,6 +19,8 @@ class UserProfile(models.Model):
         return self.user.username
 
 
+
+
 class Category(models.Model):
     user = models.ForeignKey(UserProfile)
     name = models.CharField(max_length=128, unique=True)
@@ -30,6 +32,8 @@ class Category(models.Model):
         self.slug = slugify(self.name)
         super(Category, self).save(*args, **kwargs)
 
+    def change_public(self,makepublic):
+        self.public=makepublic
 
     def __unicode__(self):
         return self.name

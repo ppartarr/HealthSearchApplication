@@ -88,11 +88,7 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
 
-            <!--todo show catergories and pages -->
-            {% if user.is_authenticated %}
-                <!-- todo make pretty -->
-                <h3>Your 5 most used categories</h3>
-                <a href="{% url 'add_category' %}">add category</a><br/>
+                <h3>Top Public Categories</h3>
                 {% if topcategories %}
                     <ul>
                         {% for category in topcategories %}
@@ -100,26 +96,8 @@
                         {% endfor %}
                     </ul>
                 {% else %}
-                    <strong>Add some categories to see them here.</strong><br/>
+                    <strong>There are no public categories. </strong><br/>
                 {% endif %}
-
-                <h3>Your 5 most used pages</h3>
-
-                {% if toppages %}
-                    <ul>
-                        {% for page in toppages %}
-                            <li><a href="{{ page.url }}">{{ page.title }}</a></li>
-                        {% endfor %}
-                    </ul>
-
-                {% else %}
-                    <strong>Add some pages to categories to see them here.</strong><br/>
-                {% endif %}
-
-
-            {% else %}
-                You must login to save pages
-            {% endif %}
 
             {% block side_block %}
 

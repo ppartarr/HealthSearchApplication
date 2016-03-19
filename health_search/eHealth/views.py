@@ -10,12 +10,8 @@ from django.template import RequestContext
 
 def default_context(request,dict):
     try:
-        user = UserProfile.objects.filter(user=request.user).get()
-        category_list = Category.objects.filter(user=user).order_by('-likes')[:5] #todo remove likes
-        page_list=[]
-        for cat in category_list:
-            page_list += Page.objects.filter(category=cat).order_by('-views')[:5] #todo fix as will show more that 5 pages du to +=
-        default= {'topcategories': category_list, 'toppages': page_list}
+        category_list = Category.objects.filter(public=True).order_by('-views')[:20] #todo remove likes
+        default= {'topcategories': category_list}
         default.update(dict)
         return default
     except:
@@ -173,3 +169,5 @@ def add_category(request):
     else:
         form = CategoryForm()
     return render(request, 'eHealth/add_category.html', default_context(request,{'form': form}))
+
+
