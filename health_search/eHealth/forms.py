@@ -3,8 +3,7 @@ from django.contrib.auth.models import User
 from eHealth.models import UserProfile, Page, Category
 from django.forms import extras
 from django.core import validators
-
-
+import datetime
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
@@ -24,8 +23,9 @@ class UserForm(forms.ModelForm):
 
 class UserProfileForm(forms.ModelForm):
     gender_choices=[('male','Male',),('female','Female',)]
-
-    dateOfBirth=forms.DateField(widget=extras.SelectDateWidget)
+    #date range between this year and upto 120 (oldest a peson has lived is 116)
+    current_year = datetime.date.today().year
+    dateOfBirth=forms.DateField(widget=forms.extras.SelectDateWidget(years=[year for year in reversed(range(current_year-120,current_year))]))
     gender = forms.ChoiceField(choices=gender_choices)
     class Meta:
         model = UserProfile
