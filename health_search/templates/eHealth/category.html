@@ -8,6 +8,11 @@
     <div class="page-header">
         <h1>{{ category_name }}</h1>
     </div>
+    {% if public %}
+    category if public (click here to make it private)
+    {% else %}
+    category if private (click here to make it public)
+    {% endif %}
     <div>
         {% if category_name %}
             {% if pages %}

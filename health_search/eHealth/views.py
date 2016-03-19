@@ -116,6 +116,7 @@ def category(request, category_name_slug):
         category = Category.objects.get(slug=category_name_slug)
         context_dict['category_name'] = category.name
         context_dict['category_name_slug'] = category.slug
+        context_dict['public']=category.public
 
         #Pages don't exist yet!
         #pages = Page.objects.filter(category=category)
