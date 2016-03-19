@@ -6,8 +6,10 @@ from django.core import validators
 import datetime
 
 class UserForm(forms.ModelForm):
+    username = forms.CharField()
+    email = forms.EmailField(label='Email Adress')
     password = forms.CharField(widget=forms.PasswordInput())
-    password2 = forms.CharField(widget=forms.PasswordInput())
+    password2 = forms.CharField(widget=forms.PasswordInput(),label='Retype your Password')
 
     def clean_password2(self):
         password = self.cleaned_data.get('password')
@@ -25,7 +27,8 @@ class UserProfileForm(forms.ModelForm):
     gender_choices=[('male','Male',),('female','Female',)]
     #date range between this year and upto 120 (oldest a peson has lived is 116)
     current_year = datetime.date.today().year
-    dateOfBirth=forms.DateField(widget=forms.extras.SelectDateWidget(years=[year for year in reversed(range(current_year-120,current_year))]))
+    dateOfBirth=forms.DateField(widget=forms.extras.SelectDateWidget(years=[year for year in reversed(range(current_year-120,current_year))]),
+                                label='Date of Birth')
     gender = forms.ChoiceField(choices=gender_choices)
     class Meta:
         model = UserProfile

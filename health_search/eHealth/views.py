@@ -70,7 +70,6 @@ def register(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect('/')
 
-    registered = False
 
     if request.method == 'POST':
 
@@ -93,7 +92,6 @@ def register(request):
 
             profile.save()
 
-            registered = True
             new_user = authenticate(username=request.POST['username'],
                                     password=request.POST['password'],
                                     )
@@ -108,7 +106,7 @@ def register(request):
 
     return render(request,
             'registration/register.html',
-            default_context(request,{'user_form': user_form, 'profile_form': profile_form, 'registered': registered}))
+            default_context(request,{'user_form': user_form, 'profile_form': profile_form, }))
 
 def category(request, category_name_slug):
     context_dict = {}
