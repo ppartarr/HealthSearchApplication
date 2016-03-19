@@ -34,18 +34,21 @@ DEBUG = True
 
 import socket
 
-if socket.gethostname() == 'kevin-pi-server':
-    DEBUG = TEMPLATE_DEBUG = False
-    ALLOWED_HOSTS = ["localhost","192.168.0.12","2.219.202.183",".healthsearch.tk"  ]
-
-else:
-   DEBUG = TEMPLATE_DEBUG = True
-   ALLOWED_HOSTS = []
 
 
+DEBUG = TEMPLATE_DEBUG = True
+ALLOWED_HOSTS = []
 
-#DEBUG = TEMPLATE_DEBUG = True
-#ALLOWED_HOSTS = []
+#if socket.gethostname() == 'kevin-pi-server':
+#    DEBUG = TEMPLATE_DEBUG = False
+#    ALLOWED_HOSTS = ["localhost","192.168.0.12","2.219.202.183",".healthsearch.tk"  ]
+#else:
+#   DEBUG = TEMPLATE_DEBUG = True
+#   ALLOWED_HOSTS = []
+
+
+
+
 
 
 REGISTRATION_OPEN = True        # If True, users can register
