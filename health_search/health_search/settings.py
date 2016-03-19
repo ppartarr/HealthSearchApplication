@@ -32,7 +32,13 @@ SECRET_KEY = 'o0s!81zm5ax%c8rx__l=j(n$5ea8($5o$2w!put9lysr$ixzc8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = True
+import socket
+
+if socket.gethostname() == 'kevin-pi-server':
+    DEBUG = TEMPLATE_DEBUG = False
+else:
+    DEBUG = TEMPLATE_DEBUG = True
+
 
 ALLOWED_HOSTS = []
 
