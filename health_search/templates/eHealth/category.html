@@ -8,30 +8,49 @@
     <div class="page-header">
         <h1>{{ category_name }}</h1>
     </div>
-    {% if public %}
-        category ifpublic
-        <button type="submit" class="btn btn-default">Make it private</button> <!--todo implment-->
-    {% else %}
-        category ifprivate
-        <button type="button" class="btn btn-default">Make it public</button>  <!--todo implment-->
-    {% endif %}
-    <div>
-        {% if category_name %}
-            {% if pages %}
-                <ul>
-                    {% for page in pages %}
-                        <li><a href="{{ page.url }}">{{ page.title }}</a> flesch_score {{ page.flesch_score }},
-                            polarity_score {{ page.polarity_score }}, subjectivity_score {{ page.subjectivity_score }}
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <strong>No pages currently in category.</strong>
-            {% endif %}
+    {% if is_owner %}
+        {% if public %}
+            <form action=" " method="POST">
+                {% csrf_token %}
+                <input type="hidden" value=Fasle name="public"/>
+                <button type="submit" class="btn btn-default">Make category private</button>
+            </form>
 
-            <a href="/category/{{ category_name_slug }}/add_page/">Add a Page</a>
         {% else %}
-            The specified category {{ category_name }} does not exist!
+            <form action=" " method="POST">
+                {% csrf_token %}
+                <input type="hidden" value=True name="public"/>
+                <button type="submit" class="btn btn-default">Make category public</button>
+            </form>
         {% endif %}
-    </div>
+    {% endif %}
+
+
+    {% if is_owner or public %}
+        <div>
+            {% if category_name %}
+                {% if pages %}
+                    <ul>
+                        {% for page in pages %}
+                            <li><a href="{{ page.url }}">{{ page.title }}</a> flesch_score {{ page.flesch_score }},
+                                polarity_score {{ page.polarity_score }},
+                                subjectivity_score {{ page.subjectivity_score }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <strong>No pages currently in category.</strong>
+                {% endif %}
+                {% if is_owner %}
+                    <a href="/category/{{ category_name_slug }}/add_page/">Add a Page</a>
+                {% endif %}
+
+            {% else %}
+                The specified category {{ category_name }} does not exist!
+            {% endif %}
+        </div>
+    {% else %}
+
+
+    {% endif %}
 {% endblock %}

@@ -1,31 +1,32 @@
 from django.shortcuts import render, HttpResponseRedirect
 from search.federated_search import federated_run_querys
 from eHealth.forms import UserForm, UserProfileForm, PageForm, CategoryForm
-from eHealth.models import Category,Page,UserProfile
+from eHealth.models import Category, Page, UserProfile
 from django.contrib.auth import authenticate, login
 from django.core.context_processors import request
 from django.contrib.auth.models import User
 from django.template import RequestContext
 
 
-def default_context(request,dict):
+def default_context(request, dict):
     try:
-        category_list = Category.objects.filter(public=True).order_by('-views')[:20] #todo remove likes
-        default= {'topcategories': category_list}
+        category_list = Category.objects.filter(public=True).order_by('-views')[:20]  # todo remove likes
+        default = {'topcategories': category_list}
         default.update(dict)
         return default
     except:
-        default={}
+        default = {}
         default.update(dict)
         return default
 
+
 def index(request):
-    response = render(request, 'eHealth/index.html',default_context(request,{}))
+    response = render(request, 'eHealth/index.html', default_context(request, {}))
     return response
 
 
 def about(request):
-    return render(request, 'eHealth/about.html',default_context(request,{}))
+    return render(request, 'eHealth/about.html', default_context(request, {}))
 
 
 def search(request):
@@ -33,39 +34,36 @@ def search(request):
                    'bing_results': [],
                    'healthFinder_results': [],
                    'medlinePlus_results': [],
-                    }
+                   }
 
     if request.method == 'POST':
         query = request.POST['query'].strip()
 
         if query:
-            result_list = federated_run_querys(request,query)
-    return render(request, 'eHealth/search.html', default_context(request,result_list))
+            result_list = federated_run_querys(request, query)
+    return render(request, 'eHealth/search.html', default_context(request, result_list))
 
 
-#todo implement
+# todo implement
 def user(request):
     context_dict = {}
     try:
         user = UserProfile.objects.filter(user=request.user).get()
-        context_dict['username']        = request.user.get_username()
-        context_dict['email']           = request.user.email
-        context_dict['dob']             = user.dateOfBirth
-        context_dict['gender']          = user.gender
-        context_dict['all_categories']  = Category.objects.filter(user=user)
+        context_dict['username'] = request.user.get_username()
+        context_dict['email'] = request.user.email
+        context_dict['dob'] = user.dateOfBirth
+        context_dict['gender'] = user.gender
+        context_dict['all_categories'] = Category.objects.filter(user=user)
     except:
         print 'user profile error:',
         return HttpResponseRedirect('/')
-    response = render(request, 'eHealth/user.html',default_context(request,context_dict))
+    response = render(request, 'eHealth/user.html', default_context(request, context_dict))
     return response
 
 
-
 def register(request):
-
     if request.user.is_authenticated():
         return HttpResponseRedirect('/')
-
 
     if request.method == 'POST':
 
@@ -81,7 +79,6 @@ def register(request):
 
             profile = profile_form.save(commit=False)
             profile.user = user
-
 
             if 'picture' in request.FILES:
                 profile.picture = request.FILES['picture']
@@ -101,31 +98,37 @@ def register(request):
         profile_form = UserProfileForm()
 
     return render(request,
-            'registration/register.html',
-            default_context(request,{'user_form': user_form, 'profile_form': profile_form, }))
+                  'registration/register.html',
+                  default_context(request, {'user_form': user_form, 'profile_form': profile_form, }))
+
 
 def category(request, category_name_slug):
     context_dict = {}
-
     try:
-
         category = Category.objects.get(slug=category_name_slug)
         context_dict['category_name'] = category.name
         context_dict['category_name_slug'] = category.slug
-        context_dict['public']=category.public
 
-        #Pages don't exist yet!
-        #pages = Page.objects.filter(category=category)
-
-        #context_dict['pages'] = pages
-        #context_dict['category'] = category
+        if request.POST:
+            public = request.POST.get('public')
+            category.public = bool(public)
+            category.save()
+        context_dict['public'] = category.public
+        print str(request.user) == str(category.user)
+        try:
+            if str(request.user) == str(category.user):
+                context_dict['is_owner'] = True
+            else:
+                context_dict['is_owner'] = False
+        except:
+            context_dict['is_owner'] = False
     except Category.DoesNotExist:
         pass
 
     return render(request, 'eHealth/category.html', default_context(request, context_dict))
 
 
-#todo fix need to add user to cat field
+# todo fix need to add user to cat field
 def add_page(request, category_name_slug):
     try:
         cat = Category.objects.get(slug=category_name_slug)
@@ -148,26 +151,25 @@ def add_page(request, category_name_slug):
 
     context_dict = {'form': form, 'category': cat}
 
-    return render(request, 'eHealth/add_page.html', default_context(request,context_dict))
+    return render(request, 'eHealth/add_page.html', default_context(request, context_dict))
+
 
 def add_category(request):
     try:
         user = UserProfile.objects.get(user=request.user)
     except:
-        user=None
+        user = None
     if request.method == 'POST':
         form = CategoryForm(request.POST)
         if form.is_valid():
             if user:
                 cat = form.save(commit=False)
-                cat.user=user
+                cat.user = user
                 cat.save()
-                return HttpResponseRedirect('/user')
+                # return HttpResponseRedirect('/user')
 
         else:
             print form.errors
     else:
         form = CategoryForm()
-    return render(request, 'eHealth/add_category.html', default_context(request,{'form': form}))
-
-
+    return render(request, 'eHealth/add_category.html', default_context(request, {'form': form}))
