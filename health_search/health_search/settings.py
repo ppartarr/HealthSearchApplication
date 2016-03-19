@@ -41,12 +41,12 @@ ALLOWED_HOSTS = []
 
 
 #tod remove before submission
-if socket.gethostname() == 'kevin-pi-server':
-    DEBUG = TEMPLATE_DEBUG = False
-    ALLOWED_HOSTS = ["localhost","192.168.0.12","2.219.202.183",".healthsearch.tk"  ]
-else:
-   DEBUG = TEMPLATE_DEBUG = True
-   ALLOWED_HOSTS = []
+#if socket.gethostname() == 'kevin-pi-server':
+#    DEBUG = TEMPLATE_DEBUG = False
+#    ALLOWED_HOSTS = ["localhost","192.168.0.12","2.219.202.183",".healthsearch.tk"  ]
+#else:
+#   DEBUG = TEMPLATE_DEBUG = True
+#   ALLOWED_HOSTS = []
 
 
 

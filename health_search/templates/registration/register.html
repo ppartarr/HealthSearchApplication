@@ -10,23 +10,21 @@
 
         {% csrf_token %}
 
-        <!-- Display each form. The as_table method wraps each element in a paragraph
-             (<tr>) element. This ensures each element appears on a new line,
+        <!-- Display each form. The as_p method wraps each element in a paragraph
+             (<p>) element. This ensures each element appears on a new line,
              making everything look neater. -->
         <table>
             <tbody>
             {{ user_form.as_table }}
             {{ profile_form.as_table }}
+            <tr class="blank_row"></tr>
+            <tr><th></th><td><button type="submit" class="btn btn-default">Register</button></td></tr>
 
             </tbody>
 
         </table>
 
 
-        <button type="submit" class="btn btn-default">Register</button>
 
 
-        <!-- Provide a button to click to submit the form. -->
-
-    </form>
 {% endblock %}
