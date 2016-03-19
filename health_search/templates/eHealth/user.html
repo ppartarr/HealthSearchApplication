@@ -5,9 +5,50 @@
 
 {% block body_block %}
     <!-- todo use { % media %} tag -->
-    <img src="../media/profile_images/{{ username }}" width="200" height="200"  onerror="this.onerror=null;this.src='{% static "images/defultImage.jpg" %}'" alt="Picture of a thing"/> <br/>
+
+
+
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">{{ username }}</h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-3 col-lg-3 " align="center"> <img src="../media/profile_images/{{ username }}" width="200" height="200"  onerror="this.onerror=null;this.src='{% static "images/defultImage.jpg" %}'" alt="Picture of a thing"/>  </div>
+                    <div class=" col-md-9 col-lg-9 ">
+                        <table class="table table-user-information">
+                            <tbody>
+
+                                          <tr>
+                                            <td>Date of Birth: </td>
+                                            <td>{{ dob }}</td>
+                                          </tr>
+
+                                          <tr>
+                                            <td>Gender: </td>
+                                            <td>{{ gender }}</td>
+                                          </tr>
+
+                                          <tr>
+                                            <td>Email: </td>
+                                            <td>{{ email }}</td>
+                                          </tr>
+
+                                         <tr>
+                                             <td>Profession: </td>
+                                             <td>Wanker</td>
+                                         </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+              </div>
+            </div>
+          </div>
+
+    <!--
     <ul>
-        <!-- todo make pretty -->
         <li>Username: {{ username }}</li>
         <li>Date Of Birth: {{ dob }}</li>
         <li>Profession:</li>
@@ -15,12 +56,29 @@
         <li>Email: {{ email }}</li>
 
         <a href="{% url 'add_category' %}"> add category</a><br/>
-    </ul>
-    {% if all_categories %}
-        <ul>
-            {% for cat in all_categories %}
-                <li><a href="{% url 'category' cat.slug %}">{{ cat.name }}</a></li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+    </ul>-->
+     <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">Categories</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class=" col-md-9 col-lg-9 ">
+                        <table >
+                                                <tbody>
+                                                    {% if all_categories %}
+                                                        {% for cat in all_categories %}
+                                                        <tr>
+                                                            <td><a href="{% url 'category' cat.slug %}">{{ cat.name }}</a></td>
+                                                        </tr>
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                </tbody>
+                        </table>
+                     </div>
+                </div>
+            </div>
+     </div>
+
+
 {% endblock %}
