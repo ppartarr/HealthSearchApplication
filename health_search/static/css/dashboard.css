@@ -39,7 +39,7 @@ body {
     top: 51px;
     bottom: 0;
     left: 0;
-    z-index: -1;
+    z-index: 0;
     display: block;
     padding: 20px;
     overflow-x: hidden;
@@ -160,7 +160,7 @@ body {
         .tab.active {
             display:block;
         }
-
+/** Overlay Login **/
 .overlay {
     height: 100%;
     width: 0;
@@ -195,4 +195,23 @@ body {
     top: 15px;
     right: 35px;
   }
+}
+
+/** User profile **/
+
+
+.table-user-information > tbody > tr {
+    border-top: 1px solid rgb(221, 221, 221);
+}
+
+.table-user-information > tbody > tr:first-child {
+    border-top: 0;
+}
+
+
+.table-user-information > tbody > tr > td {
+    border-top: 0;
+}
+.toppad
+{margin-top:20px;
 }
