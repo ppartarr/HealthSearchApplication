@@ -34,12 +34,14 @@ DEBUG = True
 
 import socket
 
-if socket.gethostname() == 'kevin-pi-server':
-    DEBUG = TEMPLATE_DEBUG = False
-else:
-    DEBUG = TEMPLATE_DEBUG = True
+#if socket.gethostname() == 'kevin-pi-server':
+#    DEBUG = TEMPLATE_DEBUG = False
+#else:
+#    DEBUG = TEMPLATE_DEBUG = True
+# ALLOWED_HOSTS = [localhost,192.168.0.12:80]
 
 
+DEBUG = TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
 
