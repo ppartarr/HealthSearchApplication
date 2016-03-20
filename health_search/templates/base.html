@@ -108,7 +108,7 @@
 
                 <h3>Top Public Categories</h3>
                 {% if topcategories %}
-                    <ul>
+                    <ul class="nav nav-sidebar">
                         {% for category in topcategories %}
                             <li><a href="{% url 'category' category.slug %}">{{ category.name }}</a></li>
                         {% endfor %}
