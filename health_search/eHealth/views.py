@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect,redirect
 from search.federated_search import federated_run_querys
-from eHealth.forms import UserForm, UserProfileForm, PageForm, CategoryForm
+from eHealth.forms import UserForm, UserProfileForm, PageForm, CategoryForm, UserEditNameForm, UserEditEmailForm, \
+    UserEditPasswordForm, UserEditPictureForm
 from eHealth.models import Category, Page, UserProfile
 from django.contrib.auth import authenticate, login
 from django.core.context_processors import request
@@ -44,7 +45,6 @@ def search(request):
     return render(request, 'eHealth/search.html', default_context(request, result_list))
 
 
-# todo implement
 def user(request):
     context_dict = {}
     try:
@@ -59,6 +59,83 @@ def user(request):
         return HttpResponseRedirect('/')
     response = render(request, 'eHealth/user.html', default_context(request, context_dict))
     return response
+
+def update_username(request):
+    ## Allows the user to change supplied info
+
+    if request.method == 'POST':
+        form = UserEditNameForm(request.POST, instance=request.user)
+        ## If form is valid, redirect them to their profile page
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/')
+    else:
+        form = UserEditNameForm()
+    context_dict = {'form_name': 'Change username',
+                    'url':'update_username',
+                    'form':form,
+                    }
+
+    return render(request, 'eHealth/update_user.html', default_context(request,context_dict))
+
+def update_email(request):
+    ## Allows the user to change supplied info
+
+    if request.method == 'POST':
+        form = UserEditEmailForm(request.POST, instance=request.user)
+        ## If form is valid, redirect them to their profile page
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/')
+    else:
+        form = UserEditEmailForm()
+    context_dict = {'form_name': 'Change Email',
+                    'url':'update_email',
+                    'form':form,
+                    }
+
+    return render(request, 'eHealth/update_user.html', default_context(request,context_dict))
+
+def update_password(request):
+    ## Allows the user to change supplied info
+
+    if request.method == 'POST':
+        form = UserEditPasswordForm(request.POST, instance=request.user)
+        ## If form is valid, redirect them to their profile page
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/')
+    else:
+        form = UserEditPasswordForm()
+    context_dict = {'form_name': 'Change Password',
+                    'url':'update_password',
+                    'form':form,
+                    }
+
+    return render(request, 'eHealth/update_user.html', default_context(request,context_dict))
+
+
+def update_picture(request):
+    ## Allows the user to change supplied info
+
+    if request.method == 'POST':
+        form = UserEditPictureForm(request.POST, instance=request.user)
+        ## If form is valid, redirect them to their profile page
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/')
+    else:
+        form = UserEditPictureForm()
+    context_dict = {'form_name': 'Change Picture',
+                    'url':'update_picture',
+                    'form':form,
+                    }
+
+    return render(request, 'eHealth/update_user.html', default_context(request,context_dict))
+
+
+
+
 
 
 def register(request):

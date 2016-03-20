@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block body_block %}
+<h1>{{ form_name }}</h1>
+<form id="{{ form.auto_id  }}"  method="POST" action="{% url url %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="update" />
+</form>
+{% endblock %}

@@ -23,6 +23,34 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ('username', 'email', 'password','password2')
 
+class UserEditNameForm(forms.ModelForm):
+    username = forms.CharField(required=True)
+    class Meta:
+        model = User
+        fields = ('username',)
+
+class UserEditEmailForm(forms.ModelForm):
+    email = forms.EmailField(label='Email Adress')
+    class Meta:
+        model = User
+        fields = ('email',)
+
+class UserEditPasswordForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput())
+    password2 = forms.CharField(widget=forms.PasswordInput(),label='Retype your Password')
+
+    def clean_password2(self):
+        password = self.cleaned_data.get('password')
+        password2 = self.cleaned_data.get('password2')
+        if password and password2:
+            if password != password2:
+                raise forms.ValidationError("The two password fields didn't match.")
+        return password2
+
+    class Meta:
+        model = User
+        fields = ('password','password2',)
+
 class UserProfileForm(forms.ModelForm):
     gender_choices=[('male','Male',),('female','Female',)]
     #date range between this year and upto 120 (oldest a peson has lived is 116)
@@ -33,6 +61,12 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('dateOfBirth', 'gender','picture')
+
+class UserEditPictureForm(forms.ModelForm):
+    #todo
+    class Meta:
+        model = UserProfile
+        fields = ('picture',)
 
 class PageForm(forms.ModelForm):
     title = forms.CharField(max_length=128, help_text="Please enter the title of the page.")
@@ -53,6 +87,8 @@ class PageForm(forms.ModelForm):
     class Meta:
         model = Page
         exclude = ('category','flesch_score','polarity_score','subjectivity_score','summary',)
+
+
 
 class CategoryForm(forms.ModelForm):
     name = forms.CharField(max_length=128, help_text="Please enter the category name.")
