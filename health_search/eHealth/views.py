@@ -171,6 +171,7 @@ def register(request):
                                     password=request.POST['password'],
                                     )
             login(request, new_user)
+            return HttpResponseRedirect('/')
 
         else:
             print user_form.errors, profile_form.errors
