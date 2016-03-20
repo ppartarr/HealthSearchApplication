@@ -43,7 +43,11 @@
                                                     <span class="caret"></span></button>
                                                     <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                                                         {% for category in user_categories %}
-                                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'category' category.slug %}">{{ category.name }}</a></li>
+                                                            <!form role="form" id="page-form" method="post" action="/category/{{ category.slug }}/add_page">
+                                                                <li role="presentation">
+                                                                    <a role="menuitem" tabindex="-1" href="{% url 'add_page' category.slug %}">{{ category.name }}</a>
+                                                                </li>
+                                                            <!/form>
                                                         {% endfor %}
                                                     </ul>
                                                 {% endif %}
