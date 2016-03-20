@@ -41,11 +41,13 @@ def search(request):
                    'medlinePlus_results': [],
                    }
 
+
     if request.method == 'POST':
         query = request.POST['query'].strip()
 
         if query:
             result_list = federated_run_querys(request, query)
+
     try:
         username = None
         if request.user.is_authenticated():
