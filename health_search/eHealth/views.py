@@ -11,6 +11,10 @@ from django.template import RequestContext
 
 def default_context(request, dict):
     try:
+        #username = None
+        #if request.user.is_authenticated():
+            #username = request.user.get_username()
+        #category_list = Category.objects.filter(user=username)
         category_list = Category.objects.filter(public=True).order_by('-views')[:20]
         default = {'topcategories': category_list}
         default.update(dict)
@@ -42,6 +46,16 @@ def search(request):
 
         if query:
             result_list = federated_run_querys(request, query)
+    try:
+        username = None
+        if request.user.is_authenticated():
+            username = UserProfile.objects.filter(user=request.user).get()
+        category_list = Category.objects.filter(user=username)
+        dict = {'user_categories': category_list}
+        result_list.update(dict)
+    except:
+        pass
+
     return render(request, 'eHealth/search.html', default_context(request, result_list))
 
 
