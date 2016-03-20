@@ -6,6 +6,7 @@ from scores.scores import get_all_scores
 class UserProfile(models.Model):
     def picname(self, *args, **kwargs):
         username = self.user.get_username()
+        print username
         return 'profile_images/'+username
 
     gender_choices=(('male','Male',),('female','Female',))

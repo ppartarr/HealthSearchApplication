@@ -3,10 +3,22 @@
 {% load staticfiles %}
 
 {% block body_block %}
-<h1>{{ form_name }}</h1>
-<form id="{{ form.auto_id  }}"  method="POST" action="{% url url %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="update" />
-</form>
+    <h1>{{ form_name }}</h1>
+    <form id="{{ form.auto_id }}" method="POST" action="{% url url %}" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <table>
+            <tbody>
+            {{ form.as_table }}
+            <tr>
+                <th></th>
+                <td>
+                    <button type="submit" class="btn btn-default">Update</button>
+                </td>
+            </tr>
+
+            </tbody>
+
+        </table>
+    </form>
 {% endblock %}

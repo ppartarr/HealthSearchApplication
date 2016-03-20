@@ -63,7 +63,7 @@ class UserProfileForm(forms.ModelForm):
         fields = ('dateOfBirth', 'gender','picture')
 
 class UserEditPictureForm(forms.ModelForm):
-    #todo
+
     class Meta:
         model = UserProfile
         fields = ('picture',)

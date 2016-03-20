@@ -122,7 +122,12 @@ def update_picture(request):
         form = UserEditPictureForm(request.POST, instance=request.user)
         ## If form is valid, redirect them to their profile page
         if form.is_valid():
-            form.save()
+            profile=form.save(commit=False)
+            user=UserProfile.objects.get(user=profile)
+            if 'picture' in request.FILES:
+                user.picture = request.FILES['picture']
+            user.save()
+            profile.save()
             return HttpResponseRedirect('/')
     else:
         form = UserEditPictureForm()
