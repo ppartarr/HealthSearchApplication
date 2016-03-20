@@ -19,6 +19,8 @@ def _html_stripper(url):
 def _get_readability_score(text):
     try:
         readability_score = int(textstat.flesch_reading_ease(text))
+        #concerts (-100,100) to (0,100)
+        readability_score = 50 + readability_score/2
         return readability_score
     except:
         print '_get_readability_score'
@@ -29,7 +31,7 @@ def _get_polarity_score(text):
     try:
         polarity_score = TextBlob(text).polarity
         # polarity is returns as a flot between (-1.0,1.0) this converts it to a int between (0,100)
-        polarity_score = int(50 + (polarity_score * 50))
+        polarity_score = 50 + int(polarity_score * 50)
         return polarity_score
     except:
         print '_get_polarity_score Error'

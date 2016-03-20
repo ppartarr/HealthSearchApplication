@@ -49,7 +49,6 @@ class Page(models.Model):
     polarity_score = models.IntegerField(default=0)
     subjectivity_score = models.IntegerField(default=0)
 
-    #todo check
     def save(self, *args, **kwargs):
         super(Page, self).save(*args, **kwargs)
         #todo add summary
