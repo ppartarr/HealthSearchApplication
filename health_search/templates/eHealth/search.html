@@ -39,24 +39,19 @@
                                                 <p class="list-group-item-text">{{ result.from }}</p>
 
                                                 {% if user.is_authenticated %}
-                                                    <button class="btn btn-default dropdown-toggle" type="button"
-                                                            id="menu1" data-toggle="dropdown">Add to category
-                                                        <span class="caret"></span></button>
+                                                    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" >Add to category
+                                                    <span class="caret"></span></button>
                                                     <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                                                         {% for category in user_categories %}
-                                                            <form role="form" id="page-form" method="post" action="/category/{{ category.slug }}/add_page/">
-                                                                        {% csrf_token %}#
-                                                            <input id="id_views" name="views" type="hidden" value="0" />
-                                                            <input id="id_title" maxlength="128" type="hidden" name="title" value="{{result.title}}" />
-                                                            <input id="id_url" maxlength="200" type="hidden" name="url" value="{{result.link}}" />
-                                                            <input id="id_summary" maxlength="1000" type="hidden" name="summary" value="{{result.summary}}" />
-
-
-
-                                                            <li role="presentation">
-                                                                <button role="menuitem" type="submit" id="id_category" name="category" value="{{ category }}" >{{ category.name }}</button>
-
-                                                            </li>
+                                                            <form role="form" method="post" action="/category/{{ category.slug }}/add_page">
+                                                                {% csrf_token %}
+                                                                <input id="id_views" name="views" type="hidden" value="0" />
+                                                                <input id="id_title" maxlength="128" type="hidden" name="title" value="{{result.title}}" />
+                                                                <input id="id_url" maxlength="200" type="hidden" name="url" value="{{result.link}}" />
+                                                                <input id="id_summary" maxlength="1000" type="hidden" name="summary" value="{{result.summary}}" />
+                                                                <li role="presentation">
+                                                                    <a role="menuitem" type="submit" id="id_category" name="category" value="{{ category }}" >{{ category.name }}</a>
+                                                                </li>
                                                             </form>
                                                         {% endfor %}
                                                     </ul>
