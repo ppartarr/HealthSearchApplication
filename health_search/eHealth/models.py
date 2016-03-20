@@ -24,7 +24,7 @@ class UserProfile(models.Model):
 
 class Category(models.Model):
     user = models.ForeignKey(UserProfile)
-    name = models.CharField(max_length=128, unique=True)
+    name = models.CharField(max_length=128)
     views = models.IntegerField(default=0)
     slug = models.SlugField()
     public = models.BooleanField(default=False)
@@ -33,7 +33,7 @@ class Category(models.Model):
         self.slug = self.user.user.username +slugify(self.name)
         super(Category, self).save(*args, **kwargs)
 
-    def change_public(self,makepublic):
+    def change_public(self, makepublic):
         self.public=makepublic
 
     def __unicode__(self):
