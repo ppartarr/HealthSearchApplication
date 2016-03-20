@@ -7,7 +7,7 @@ import datetime
 
 class UserForm(forms.ModelForm):
     username = forms.CharField()
-    email = forms.EmailField(label='Email Adress')
+    email = forms.EmailField(label='Email Address')
     password = forms.CharField(widget=forms.PasswordInput())
     password2 = forms.CharField(widget=forms.PasswordInput(),label='Retype your Password')
 
@@ -30,7 +30,7 @@ class UserEditNameForm(forms.ModelForm):
         fields = ('username',)
 
 class UserEditEmailForm(forms.ModelForm):
-    email = forms.EmailField(label='Email Adress')
+    email = forms.EmailField(label='Email Address')
     class Meta:
         model = User
         fields = ('email',)

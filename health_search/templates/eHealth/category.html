@@ -10,7 +10,6 @@
     </div>
 
 
-
         <div>
             {% if category_name %}
                 {% if pages %}
@@ -39,10 +38,21 @@
 
                     </table>
                     </div>
-
+                    <div>
+                        <h4>Scores</h4>
+                    </div>
+                    <div>
+                        <li><strong>Readability:</strong> This score determines the readability of a webpage. The higher
+                            the score, the easier the content should be to read and understand.</li>
+                        <li><strong>Polarity:</strong> This is the sentiment score of a webpage; how positive or negative it is.
+                            A score of 50 is neutral, higher is mostly positive and lower is mostly negative.</li>
+                        <li><strong>Subjectivity:</strong> The subjectivity of a webpage, a measure of how factual or
+                            opinion based the content is. The higher the score, the more opinion based the content.</li>
+                    </div>
                 {% else %}
                     <strong>No pages currently in category.</strong>
                 {% endif %}
+                <br>
                 {% if is_owner %}
                     <a href="/category/{{ category_name_slug }}/add_page/" class="btn btn-primary" style="float: left">Add a Page</a>
                     {% if public %}
