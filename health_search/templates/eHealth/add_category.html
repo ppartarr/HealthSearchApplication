@@ -9,7 +9,7 @@
 
     <form role="form" id="category_form" method="post" action="/add_category/">
         <h2 class="form-signing-heading">Add a Category</h2>
-
+        </br>
         {% csrf_token %}
         {% for hidden in form.hidden_fields %}
             {{ hidden }}
@@ -20,8 +20,8 @@
             {{ field.help_text }}
             {{ field }}
         {% endfor %}
-        <br/>
+        </br></br>
         <button class="btn btn-primary" type="submit" name="submit">Add Category</button>
     </form>
-    </div>
+
 {% endblock %}
