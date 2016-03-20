@@ -35,7 +35,7 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 
     <div class="overlay-content">
-        <form class="form-signin" role="form" method="post" action="{% url 'auth_login' %}">
+        <form class="form-signin" method="post" action="{% url 'auth_login' %}">
             {% csrf_token %}
             <h2 class="form-signin-heading">Please sign in</h2>
 
