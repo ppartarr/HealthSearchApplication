@@ -26,13 +26,14 @@
     {% endif %}
 
 
-    {% if is_owner or public %}
         <div>
             {% if category_name %}
                 {% if pages %}
                     <ul>
                         {% for page in pages %}
-                            <li><a href="{{ page.url }}">{{ page.title }}</a> flesch_score {{ page.flesch_score }},
+                            <li>
+                                <a href="{% url 'goto' %}?page_id={{page.id}}">{{ page.title }}</a>
+                                flesch_score {{ page.flesch_score }},
                                 polarity_score {{ page.polarity_score }},
                                 subjectivity_score {{ page.subjectivity_score }}
                             </li>
@@ -51,5 +52,4 @@
         </div>
 
 
-    {% endif %}
 {% endblock %}

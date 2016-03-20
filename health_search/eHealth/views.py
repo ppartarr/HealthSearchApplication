@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect,redirect
 from search.federated_search import federated_run_querys
 from eHealth.forms import UserForm, UserProfileForm, PageForm, CategoryForm
 from eHealth.models import Category, Page, UserProfile
@@ -108,6 +108,7 @@ def category(request, category_name_slug):
         category = Category.objects.get(slug=category_name_slug)
         context_dict['category_name'] = category.name
         context_dict['category_name_slug'] = category.slug
+        context_dict['category_views'] = category.views
 
         if request.POST:
             public = request.POST.get('public')
@@ -123,8 +124,6 @@ def category(request, category_name_slug):
             context_dict['is_owner'] = False
 
         #if you are not aurthrised to view a page you are returned to index
-        print context_dict['is_owner'] or context_dict['public']
-        print context_dict['is_owner'], context_dict['public']
         if not (context_dict['is_owner'] or context_dict['public']):
             return HttpResponseRedirect('/')
 
@@ -140,6 +139,7 @@ def add_page(request, category_name_slug):
         cat = Category.objects.get(slug=category_name_slug)
     except Category.DoesNotExist:
         cat = None
+    print cat
     if request.method == 'POST':
         form = PageForm(request.POST)
         if form.is_valid():
@@ -147,9 +147,8 @@ def add_page(request, category_name_slug):
                 page = form.save(commit=False)
                 page.category = cat
                 page.views = 0
-                page.save()
-                # probably better to use a redirect here.
-                return category(request, category_name_slug)
+                page.get_scores()
+                return HttpResponseRedirect('/category/'+category_name_slug)
         else:
             print form.errors
     else:
@@ -172,10 +171,30 @@ def add_category(request):
                 cat = form.save(commit=False)
                 cat.user = user
                 cat.save()
-                # return HttpResponseRedirect('/user')
+                return HttpResponseRedirect('/user')
 
         else:
             print form.errors
     else:
         form = CategoryForm()
     return render(request, 'eHealth/add_category.html', default_context(request, {'form': form}))
+
+
+def track_url(request):
+    page_id = None
+    url = '/'
+    if request.method == 'GET':
+        if 'page_id' in request.GET:
+            page_id = request.GET['page_id']
+            try:
+                page = Page.objects.get(id=page_id)
+                page.views = page.views + 1
+                page.save()
+                category = page.category
+                category.views = category.views +1
+                category.save()
+                url = page.url
+            except:
+                pass
+
+    return redirect(url)

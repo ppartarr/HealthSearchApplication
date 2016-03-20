@@ -51,12 +51,17 @@ class Page(models.Model):
 
     #todo check
     def save(self, *args, **kwargs):
+        super(Page, self).save(*args, **kwargs)
+        #todo add summary
+
+    def get_scores(self):
+        self.save()
+        #save so if scores has an error the page is still saved
         page_scores=get_all_scores(self.url)
         self.flesch_score       = page_scores[0]
         self.polarity_score     = page_scores[1]
         self.subjectivity_score = page_scores[2]
-        super(Page, self).save(*args, **kwargs)
-        #todo add summary
+        self.save()
 
     def __unicode__(self):
         return self.title
