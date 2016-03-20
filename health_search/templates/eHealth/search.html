@@ -25,7 +25,6 @@
                     <div id="tab1" class="tab active">
                         {% if federated_results %}
                             <div class="panel-heading">
-                                <h3 class="panel-title">Federated Search</h3>
 
                                 <div class="panel-body">
                                     <div class="list-group">
@@ -43,11 +42,16 @@
                                                     <span class="caret"></span></button>
                                                     <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                                                         {% for category in user_categories %}
-                                                            <!form role="form" id="page-form" method="post" action="/category/{{ category.slug }}/add_page">
+                                                            <form role="form" method="post" action="/category/{{ category.slug }}/add_page">
+                                                                {% csrf_token %}
+                                                                <input id="id_views" name="views" type="hidden" value="0" />
+                                                                <input id="id_title" maxlength="128" type="hidden" name="title" value="{{result.title}}" />
+                                                                <input id="id_url" maxlength="200" type="hidden" name="url" value="{{result.link}}" />
+                                                                <input id="id_summary" maxlength="1000" type="hidden" name="summary" value="{{result.summary}}" />
                                                                 <li role="presentation">
-                                                                    <a role="menuitem" tabindex="-1" href="{% url 'add_page' category.slug %}">{{ category.name }}</a>
+                                                                    <a role="menuitem" type="submit" id="id_category" name="category" value="{{ category }}" >{{ category.name }}</a>
                                                                 </li>
-                                                            <!/form>
+                                                            </form>
                                                         {% endfor %}
                                                     </ul>
                                                 {% endif %}
@@ -62,7 +66,6 @@
                     <div id="tab2" class="tab">
                         {% if bing_results %}
                             <div class="panel-heading">
-                                <h3 class="panel-title">Bing Search</h3>
 
                                 <div class="panel-body">
                                     <div class="list-group">
@@ -86,7 +89,6 @@
                     <div id="tab3" class="tab">
                         {% if healthFinder_results %}
                             <div class="panel-heading">
-                                <h3 class="panel-title">Healthfinder Search</h3>
 
                                 <div class="panel-body">
                                     <div class="list-group">
@@ -110,7 +112,6 @@
                     <div id="tab4" class="tab">
                         {% if medlinePlus_results %}
                             <div class="panel-heading">
-                                <h3 class="panel-title">Medlineplus Search</h3>
 
                                 <div class="panel-body">
                                     <div class="list-group">
