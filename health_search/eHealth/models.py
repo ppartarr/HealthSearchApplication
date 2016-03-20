@@ -30,7 +30,7 @@ class Category(models.Model):
     public = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
+        self.slug = self.user.user.username +slugify(self.name)
         super(Category, self).save(*args, **kwargs)
 
     def change_public(self,makepublic):

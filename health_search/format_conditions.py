@@ -7,7 +7,7 @@ def openfile():
         condition=file.readline()
         if condition=='':
             break
-        conditions+=[re.sub("[\(\[].*?[\)\]]", "",condition)]
+        conditions+=[re.sub("[\(\[].*?[\)\]]", "",condition)[:-1]]
     return conditions
 
 print openfile()

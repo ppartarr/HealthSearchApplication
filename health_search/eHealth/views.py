@@ -68,7 +68,7 @@ def update_username(request):
         ## If form is valid, redirect them to their profile page
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/user/')
     else:
         form = UserEditNameForm()
     context_dict = {'form_name': 'Change username',
@@ -86,7 +86,7 @@ def update_email(request):
         ## If form is valid, redirect them to their profile page
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/user/')
     else:
         form = UserEditEmailForm()
     context_dict = {'form_name': 'Change Email',
@@ -104,7 +104,7 @@ def update_password(request):
         ## If form is valid, redirect them to their profile page
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/user/')
     else:
         form = UserEditPasswordForm()
     context_dict = {'form_name': 'Change Password',
@@ -128,7 +128,7 @@ def update_picture(request):
                 user.picture = request.FILES['picture']
             user.save()
             profile.save()
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/user/')
     else:
         form = UserEditPictureForm()
     context_dict = {'form_name': 'Change Picture',
