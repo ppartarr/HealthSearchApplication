@@ -3,9 +3,11 @@ import re
 def openfile():
     file=open("conditions.txt","r")
     conditions=[]
-    condition=file.readline()
     while True:
+        condition=file.readline()
         if condition=='':
             break
         conditions+=[re.sub("[\(\[].*?[\)\]]", "",condition)]
     return conditions
+
+print openfile()
