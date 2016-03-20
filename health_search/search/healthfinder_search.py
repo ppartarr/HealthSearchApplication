@@ -28,10 +28,12 @@ def healthfinder_run_query(request,search_terms):
 
     #if they are there age and gender are used
     if request.user.is_authenticated():
-        user = UserProfile.objects.filter(user=request.user).get()
-        gender = user.gender
-        age =  str(datetime.date.today().year-user.dateOfBirth.year)
-
+        try:
+            user = UserProfile.objects.filter(user=request.user).get()
+            gender = user.gender
+            age =  str(datetime.date.today().year-user.dateOfBirth.year)
+        except:
+            pass
 
     search_url = "{0}Search.{1}?api_key={2}&gender={3}&age={4}&keyword={5}".format(
         root_url,

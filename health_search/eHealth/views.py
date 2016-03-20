@@ -109,7 +109,7 @@ def category(request, category_name_slug):
         context_dict['category_name'] = category.name
         context_dict['category_name_slug'] = category.slug
         context_dict['category_views'] = category.views
-
+        context_dict['pages']=Page.objects.filter(category=category)
         if request.POST:
             public = request.POST.get('public')
             category.public = (str(public)=='True')

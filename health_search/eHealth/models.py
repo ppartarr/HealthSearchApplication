@@ -42,7 +42,6 @@ class Category(models.Model):
 class Page(models.Model):
     category = models.ForeignKey(Category)
     title = models.CharField(max_length=128)
-    summary = models.CharField(max_length=256)
     url = models.URLField()
     views = models.IntegerField(default=0)
     flesch_score = models.IntegerField(default=0)
