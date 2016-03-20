@@ -7,7 +7,6 @@ body {
   padding-top: 50px;
 }
 
-
 /*
  * Global add-ons
  */
@@ -214,4 +213,17 @@ body {
 }
 .toppad
 {margin-top:20px;
+}
+
+/** Category adding in search.html **/
+ .btn.btn-default.dropdown-toggle{
+     position: absolute;
+     top: 4px;
+     right: 16px;
+ }
+.dropdown-menu{
+    position: absolute;
+    top: 36px;
+    right: 16px;
+    left: auto;
 }
