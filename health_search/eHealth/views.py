@@ -11,7 +11,7 @@ from django.template import RequestContext
 
 def default_context(request, dict):
     try:
-        category_list = Category.objects.filter(public=True).order_by('-views')[:20]  # todo remove likes
+        category_list = Category.objects.filter(public=True).order_by('-views')[:20]
         default = {'topcategories': category_list}
         default.update(dict)
         return default
@@ -282,3 +282,8 @@ def track_url(request):
                 pass
 
     return redirect(url)
+
+
+def public_categories(request):
+    categories = Category.objects.filter(public=True).order_by('-views')[:10]
+    return render(request,'eHealth/public_categories.html',default_context(request, {'categories': categories}))
