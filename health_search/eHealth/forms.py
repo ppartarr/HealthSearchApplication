@@ -71,6 +71,7 @@ class UserEditPictureForm(forms.ModelForm):
 class PageForm(forms.ModelForm):
     title = forms.CharField(max_length=128, help_text="Please enter the title of the page.")
     url = forms.URLField(max_length=200, help_text="Please enter the URL of the page.")
+    summary = forms.CharField(max_length=1000,help_text='Please enter a page summary.')
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     def clean(self):
         cleaned_data = self.cleaned_data
@@ -86,7 +87,7 @@ class PageForm(forms.ModelForm):
 
     class Meta:
         model = Page
-        exclude = ('category','flesch_score','polarity_score','subjectivity_score','summary',)
+        exclude = ('category','flesch_score','polarity_score','subjectivity_score',)
 
 
 

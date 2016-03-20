@@ -18,18 +18,22 @@
                     <table class="table table-user-information">
 
                             <tr bgcolor="#E8E8E8">
-                                <td>Page</td>
-                                <td>Readability</td>
-                                <td>Polarity</td>
-                                <td>Subjectivity</td>
+                                <th>Page</th>
+                                <th>Summary</th>
+                                <th>Readability</th>
+                                <th>Polarity</th>
+                                <th>Subjectivity</th>
                             </tr>
                              {% for page in pages %}
                                 <tr>
                                     <td><a href="{% url 'goto' %}?page_id={{page.id}}">{{ page.title }}</a></td>
+                                    <td >{{ page.summary }}</td>
                                     <td>{{ page.flesch_score }}</td>
                                     <td>{{ page.polarity_score }}</td>
                                     <td>{{ page.subjectivity_score }}</td>
                                 </tr>
+                                 <tr>
+                                 </tr>
                             {% endfor %}
 
 

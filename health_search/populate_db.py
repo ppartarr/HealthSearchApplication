@@ -135,7 +135,8 @@ def add_category(user,name,views,public):
     return cat
 
 def add_page(cat,title,url,views=0):
-    page= Page.objects.get_or_create(category=cat,title=title,url=url,views=views)[0]
+    summary='Added via populate'
+    page= Page.objects.get_or_create(category=cat,title=title,url=url,views=views,summary=summary)[0]
     page.get_scores()
 
 if __name__ == '__main__':
