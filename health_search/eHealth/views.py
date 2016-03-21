@@ -1,4 +1,6 @@
+import os
 from django.shortcuts import render, HttpResponseRedirect,redirect
+from health_search.settings import MEDIA_ROOT
 from search.federated_search import federated_run_querys
 from eHealth.forms import UserForm, UserProfileForm, PageForm, CategoryForm, UserEditNameForm, UserEditEmailForm, \
     UserEditPasswordForm, UserEditPictureForm
@@ -140,6 +142,10 @@ def update_picture(request):
         if form.is_valid():
             profile=form.save(commit=False)
             user=UserProfile.objects.get(user=profile)
+            try:
+                os.remove(os.path.join(MEDIA_ROOT,'profile_images',user.user.get_username()))
+            except:
+                pass
             if 'picture' in request.FILES:
                 user.picture = request.FILES['picture']
             user.save()
