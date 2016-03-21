@@ -4,12 +4,44 @@
 
 {% block body_block %}
     <div class="page-header">
-        WELCOME TO EHEALTH
+        <h1>WELCOME TO EHEALTH</h1>
     </div>
     <div>
         Log in to start making categories and saving pages<br/>
-        or have a look at our Public Categories
 
-        <a href="{% url 'public_categories' %}">Public Categories</a>
     </div>
+
+
+    <div class="page-header">
+        <h2>Public categories</h2>
+    </div>
+
+
+        <div>
+            {% if categories %}
+                    <div class="panel panel-info">
+                    <table class="table table-user-information">
+
+                            <tr bgcolor="#E8E8E8">
+                                <th>Category</th>
+                                <th>Owner</th>
+                                <th>Total page views</th>
+                            </tr>
+                            {% for category in categories %}
+                                <tr>
+                                    <td><a href="{% url  'category'  category.slug %}">{{ category.name }}</a></td>
+                                    <td >{{ category.user }}</td>
+                                    <td>{{ category.views }}</td>
+                                </tr>
+
+                            {% endfor %}
+
+
+                    </table>
+                    </div>
+                {% else %}
+                    <strong>No Public categories avalable.</strong>
+                {% endif %}
+                <br>
+        </div>
 {% endblock %}
