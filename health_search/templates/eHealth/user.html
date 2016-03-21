@@ -37,14 +37,22 @@
                         </tr>
 
                         <tr>
-                            <td><a href="{% url 'update_username' %}">Change username</a></td>
-                            <td><a href="{% url 'update_email' %}">Change Email</a></td>
+                            <td>
+
+                                <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" >Edit user profile<span class="caret"></span></button>
+                                <ul class="dropdown-menu user" role="menu" aria-labelledby="menu1">
+                                    <li role="presentation">
+                                        <a href="{% url 'update_username' %}" button class="menuitem">Change username</a>
+                                        <a href="{% url 'update_email' %}" button class="menuitem">Change Email</a>
+                                        <a href="{% url 'update_password' %}" button class="menuitem">Change Password</a>
+                                        <a href="{% url 'update_picture' %}" button class="menuitem">Change picture</a>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td></td>
                         </tr>
 
-                        <tr>
-                            <td><a href="{% url 'update_password' %}">Change Password</a></td>
-                            <td><a href="{% url 'update_picture' %}">Change Picture</a></td>
-                        </tr>
+
 
 
                         </tbody>
@@ -53,6 +61,8 @@
             </div>
         </div>
     </div>
+
+
 
 
     <div class="panel panel-info">

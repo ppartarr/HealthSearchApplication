@@ -38,9 +38,9 @@
                                                 <p class="list-group-item-text">{{ result.from }}</p>
 
                                                 {% if user.is_authenticated %}
-                                                    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" >Add to category
+                                                    <button class="btn btn-default dropdown-toggle search" type="button" id="menu1" data-toggle="dropdown" >Add to category
                                                     <span class="caret"></span></button>
-                                                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                                    <ul class="dropdown-menu search" role="menu" aria-labelledby="menu1">
                                                         {% for category in user_categories %}
                                                             <form role="form" method="post" action="/category/{{ category.slug }}/add_page/">
                                                                 {% csrf_token %}
@@ -79,9 +79,9 @@
                                                 <p class="list-group-item-text">{{ result.from }}</p>
 
                                             {% if user.is_authenticated %}
-                                                    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" >Add to category
+                                                    <button class="btn btn-default dropdown-toggle search" type="button" id="menu1" data-toggle="dropdown" >Add to category
                                                     <span class="caret"></span></button>
-                                                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                                    <ul class="dropdown-menu search" role="menu" aria-labelledby="menu1">
                                                         {% for category in user_categories %}
                                                             <form role="form" method="post" action="/category/{{ category.slug }}/add_page/">
                                                                 {% csrf_token %}
@@ -121,9 +121,9 @@
                                                 <p class="list-group-item-text">{{ result.from }}</p>
 
                                             {% if user.is_authenticated %}
-                                                    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" >Add to category
+                                                    <button class="btn btn-default dropdown-toggle search" type="button" id="menu1" data-toggle="dropdown" >Add to category
                                                     <span class="caret"></span></button>
-                                                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                                    <ul class="dropdown-menu search" role="menu" aria-labelledby="menu1">
                                                         {% for category in user_categories %}
                                                             <form role="form" method="post" action="/category/{{ category.slug }}/add_page/">
                                                                 {% csrf_token %}
@@ -163,9 +163,9 @@
                                                 <p class="list-group-item-text">{{ result.from }}</p>
 
                                             {% if user.is_authenticated %}
-                                                    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" >Add to category
+                                                    <button class="btn btn-default dropdown-toggle search" type="button" id="menu1" data-toggle="dropdown" >Add to category
                                                     <span class="caret"></span></button>
-                                                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                                    <ul class="dropdown-menu search" role="menu" aria-labelledby="menu1">
                                                         {% for category in user_categories %}
                                                             <form role="form" method="post" action="/category/{{ category.slug }}/add_page/">
                                                                 {% csrf_token %}

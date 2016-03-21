@@ -216,17 +216,33 @@ body {
 }
 
 /** Category adding in search.html **/
- .btn.btn-default.dropdown-toggle{
+ .btn.btn-default.dropdown-toggle.search{
      position: absolute;
      top: 4px;
      right: 16px;
  }
-.dropdown-menu{
+
+.dropdown-menu.search{
     position: absolute;
     top: 36px;
     right: 16px;
     left: auto;
 }
+
+.dropdown-menu.search{
+    position: absolute;
+    top: 36px;
+    right: 16px;
+    left: auto;
+}
+
+.dropdown-menu.user{
+    position: absolute;
+    left: auto;
+    top: auto;
+}
+
+
 .menuitem{
     background-color: white;
     text-align: center;
