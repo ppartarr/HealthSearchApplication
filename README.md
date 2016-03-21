@@ -6,11 +6,11 @@
 * aratherstrangeman   : Christopher 2128878
 
 ### Installation Guide (python 2.7 requiered):
-|Step                           |Comand                                             |
+|Step                           |Command                                             |
 |---                            |---                                                |
 |1. Clone the repo              | git clone https://github.com/thekevinchi/HSA.git  |
-|2. Create a virtual enviroment | mkvirtualenv eHealth                              |
-|3. Enable virtual enviroment   | workon eHealth                                    |
+|2. Create a virtual environment| mkvirtualenv eHealth                              |
+|3. Enable virtual environment  | workon eHealth                                    |
 |4. Change directory            | cd HSA                                            |
 |5. Install python requirements | pip install -r requirements.txt                   |
 |6. Change directory            | cd health_search                                  |
