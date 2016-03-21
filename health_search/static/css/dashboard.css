@@ -227,3 +227,13 @@ body {
     right: 16px;
     left: auto;
 }
+.menuitem{
+    background-color: white;
+    text-align: center;
+    display: inline-block;
+    border: none;
+    color: black;
+    text-decoration: none;
+    width: 200px;
+}
+.menuitem:hover {background-color: #f1f1f1}
