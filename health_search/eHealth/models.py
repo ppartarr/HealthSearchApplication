@@ -52,7 +52,7 @@ class Page(models.Model):
 
     def save(self, *args, **kwargs):
         super(Page, self).save(*args, **kwargs)
-        #todo add summary
+
 
     def get_scores(self):
         self.save()

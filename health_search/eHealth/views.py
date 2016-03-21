@@ -233,7 +233,6 @@ def category(request, category_name_slug):
     return render(request, 'eHealth/category.html', default_context(request, context_dict))
 
 
-# todo fix need to add user to cat field
 def add_page(request, category_name_slug):
     try:
         cat = Category.objects.get(slug=category_name_slug)

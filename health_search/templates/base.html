@@ -88,10 +88,9 @@
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'user' %}">Welcome {{ user.username }}</a></li>
-                    <li><a href="{% url 'auth_logout' %}">Logout</a></li> <!-- todo implemt -->
+                    <li><a href="{% url 'auth_logout' %}?next=/">Logout</a></li>
                 {% else %}
-                    <!-- <li><a href="{% url 'registration_register' %}">pritty but doent work Register Here</a></li> -->
-                    <li><a href="{% url 'registertest' %}">Register Here </a></li> <!--todo fix this -->
+                    <li><a href="{% url 'register' %}">Register Here </a></li>
                     <li><a href="javascript:void(0)" onclick="openNav()">Login</a></li>
                 {% endif %}
 

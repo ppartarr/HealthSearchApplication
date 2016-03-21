@@ -40,13 +40,6 @@ DEBUG = TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
 
-#tod remove before submission
-#if socket.gethostname() == 'kevin-pi-server':
-#    DEBUG = TEMPLATE_DEBUG = False
-#    ALLOWED_HOSTS = ["localhost","192.168.0.12","2.219.202.183",".healthsearch.tk"  ]
-#else:
-#   DEBUG = TEMPLATE_DEBUG = True
-#   ALLOWED_HOSTS = []
 
 
 
@@ -65,7 +58,6 @@ LOGIN_URL = '/'                 # The page users are directed to if they are not
 
 # Application definition
 
-#todo remove registration or fix
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -74,7 +66,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'eHealth',
-    'registration',
 )
 
 MIDDLEWARE_CLASSES = (

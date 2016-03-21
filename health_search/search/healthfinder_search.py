@@ -1,5 +1,3 @@
-# todo check
-
 import json
 import urllib, urllib2
 from keys import HealthFinder_key
