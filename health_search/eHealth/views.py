@@ -26,7 +26,7 @@ def default_context(request, dict):
 
 
 def index(request):
-    categories = Category.objects.filter(public=True).order_by('-views')[:10]
+    categories = Category.objects.filter(public=True)
     return render(request, 'eHealth/index.html', default_context(request, {'categories': categories}))
 
 
