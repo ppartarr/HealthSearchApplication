@@ -78,6 +78,7 @@ def user(request):
     response = render(request, 'eHealth/user.html', default_context(request, context_dict))
     return response
 
+"""
 def update_username(request):
     ## Allows the user to change supplied info
 
@@ -95,6 +96,8 @@ def update_username(request):
                     }
 
     return render(request, 'eHealth/update_user.html', default_context(request,context_dict))
+"""
+
 
 def update_email(request):
     ## Allows the user to change supplied info
