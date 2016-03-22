@@ -15,34 +15,52 @@
 
     <div class="page-header">
         <h2>Public categories</h2>
+
+        {% if categories %}
+                <input class="awesomplete form-control" type="text" id="cat" name="query" value="" placeholder="Search categories..." />
+                    <script type="text/javascript" src="https://cdn.rawgit.com/LeaVerou/awesomplete/gh-pages/awesomplete.min.js"></script>
+                    <script type="text/javascript">
+                        var input = document.getElementById("cat");
+                        var awesomplete = new Awesomplete(input, {
+                            minChars: 1
+                        });
+                        var cats = [];
+                        {% for category in categories %}
+                        cats.push("{{ category.name }}")
+                        {% endfor %}
+                        awesomplete.list = cats;
+                    </script>
+
+                    <input class="btn btn-primary" type="submit" name="submit" value="Search"/>
+        {% endif %}
+    <br>
     </div>
 
+    <div>
+        {% if categories %}
+            <div class="panel panel-info">
+                <table class="table table-user-information">
 
-        <div>
-            {% if categories %}
-                    <div class="panel panel-info">
-                    <table class="table table-user-information">
+                    <tr bgcolor="#E8E8E8">
+                        <th>Category</th>
+                        <th>Owner</th>
+                        <th>Total page views</th>
+                    </tr>
+                    {% for category in categories %}
+                        <tr>
+                            <td><a href="{% url  'category'  category.slug %}">{{ category.name }}</a></td>
+                            <td >{{ category.user }}</td>
+                            <td>{{ category.views }}</td>
+                        </tr>
 
-                            <tr bgcolor="#E8E8E8">
-                                <th>Category</th>
-                                <th>Owner</th>
-                                <th>Total page views</th>
-                            </tr>
-                            {% for category in categories %}
-                                <tr>
-                                    <td><a href="{% url  'category'  category.slug %}">{{ category.name }}</a></td>
-                                    <td >{{ category.user }}</td>
-                                    <td>{{ category.views }}</td>
-                                </tr>
-
-                            {% endfor %}
+                    {% endfor %}
 
 
-                    </table>
-                    </div>
-                {% else %}
-                    <strong>No Public categories avalable.</strong>
-                {% endif %}
-                <br>
-        </div>
+                </table>
+            </div>
+            {% else %}
+                <strong>No Public categories avalable.</strong>
+            {% endif %}
+        <br>
+    </div>
 {% endblock %}

@@ -6,6 +6,7 @@ from eHealth.forms import UserForm, UserProfileForm, PageForm, CategoryForm, Use
     UserEditPasswordForm, UserEditPictureForm
 from eHealth.models import Category, Page, UserProfile
 from django.contrib.auth import authenticate, login
+import json
 from django.core.context_processors import request
 from django.contrib.auth.models import User
 from django.template import RequestContext
@@ -13,10 +14,6 @@ from django.template import RequestContext
 
 def default_context(request, dict):
     try:
-        #username = None
-        #if request.user.is_authenticated():
-            #username = request.user.get_username()
-        #category_list = Category.objects.filter(user=username)
         category_list = Category.objects.filter(public=True).order_by('-views')[:20]
         default = {'topcategories': category_list}
         default.update(dict)
