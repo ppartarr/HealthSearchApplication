@@ -14,6 +14,8 @@
         <h2>Category search results</h2>
 
         {% if categories %}
+            <form class="navbar-form navbar-left" id="user_form" method="post" action="{% url 'category_search' %}">
+                {% csrf_token %}
                 <input class="awesomplete form-control" type="text" id="cat" name="query" value="" placeholder="Search categories..." />
                     <script type="text/javascript" src="https://cdn.rawgit.com/LeaVerou/awesomplete/gh-pages/awesomplete.min.js"></script>
                     <script type="text/javascript">
@@ -29,6 +31,7 @@
                     </script>
 
                     <input class="btn btn-primary" type="submit" name="submit" value="Search"/>
+            </form>
         {% endif %}
     <br>
     </div>
