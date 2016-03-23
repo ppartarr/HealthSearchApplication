@@ -3,9 +3,6 @@
 {% load staticfiles %}
 
 {% block body_block %}
-    <div class="page-header">
-        <h1>WELCOME TO EHEALTH</h1>
-    </div>
         {% if not user.is_authenticated %}
 
     <div>
@@ -14,11 +11,9 @@
         {%  endif %}
 
     <div class="page-header">
-        <h2>Public categories</h2>
+        <h2>Category search results</h2>
 
         {% if categories %}
-            <form class="navbar-form navbar-left" id="user_form" method="post" action="{% url 'category_search' %}">
-                {% csrf_token %}
                 <input class="awesomplete form-control" type="text" id="cat" name="query" value="" placeholder="Search categories..." />
                     <script type="text/javascript" src="https://cdn.rawgit.com/LeaVerou/awesomplete/gh-pages/awesomplete.min.js"></script>
                     <script type="text/javascript">
@@ -32,8 +27,8 @@
                         {% endfor %}
                         awesomplete.list = cats;
                     </script>
+
                     <input class="btn btn-primary" type="submit" name="submit" value="Search"/>
-            </form>
         {% endif %}
     <br>
     </div>
@@ -50,11 +45,12 @@
                     </tr>
                     {% for category in categories %}
                         <tr>
-                            <td><a href="{% url  'category'  category.slug %}">{{ category.name }}</a></td>
-                            <td >{{ category.user }}</td>
-                            <td>{{ category.views }}</td>
+                            {% if query in category.name  %}
+                                <td><a href="{% url  'category'  category.slug %}">{{ category.name }}</a></td>
+                                <td >{{ category.user }}</td>
+                                <td>{{ category.views }}</td>
+                            {% endif %}
                         </tr>
-
                     {% endfor %}
 
 

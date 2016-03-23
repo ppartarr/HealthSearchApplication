@@ -18,6 +18,7 @@ urlpatterns = patterns('',
                        url(r'^update_password/$', views.update_password, name='update_password'),
                        url(r'^update_picture/$', views.update_picture, name='update_picture'),
                        #url(r'^user/(?P<user_name>[\w\-]+)/$', views.user, name='user'),
+                       url(r'^category_search/$', views.category_search, name='category_search'),
                        )
 
 from django.conf import settings

@@ -308,3 +308,9 @@ def track_url(request):
 def public_categories(request):
     categories = Category.objects.filter(public=True).order_by('-views')[:10]
     return render(request,'eHealth/public_categories.html',default_context(request, {'categories': categories}))
+
+def category_search(request):
+    categories = Category.objects.filter(public=True)
+    if request.method == 'POST':
+        query = request.POST['query'].strip()
+    return render(request, 'eHealth/category_search.html', default_context(request,{'categories': categories, 'query': query}))
